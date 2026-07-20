@@ -20,11 +20,11 @@ export default async function HomePage({
 
   return (
     <>
-      {/* Hero. The credibility artifact is the hero: a registered
-          organisation in a country where unregistered ones are common. */}
+      {/* Hero: the emblem carries the identity, the copy carries the
+          purpose, and a proof strip beneath holds the credentials. */}
       <section className="hero">
         <div className="shell hero-grid">
-          <div>
+          <div className="hero-copy">
             <p className="tag enter d1">{t.home.eyebrow}</p>
             <h1 className="d-xl enter d2" style={{ marginTop: "1.25rem" }}>
               {t.home.titleNe}
@@ -43,33 +43,37 @@ export default async function HomePage({
             </div>
           </div>
 
-          <aside className="seal enter d4" aria-label={t.home.sealTitle}>
+          <div className="hero-emblem enter d3">
             <Image
               src="/nirmaan-logo.png"
               alt={ne ? ORG.nameNe : ORG.nameEn}
-              width={420}
-              height={420}
+              width={480}
+              height={480}
               priority
             />
-            <dl className="seal-facts">
-              <div className="fact">
-                <dt>{t.home.facts.regNo}</dt>
-                <dd>{ne ? ORG.registrationNoNe : ORG.registrationNo}</dd>
-              </div>
-              <div className="fact">
-                <dt>{t.home.facts.pan}</dt>
-                <dd>{ne ? ORG.panNe : ORG.pan}</dd>
-              </div>
-              <div className="fact">
-                <dt>{t.home.facts.status}</dt>
-                <dd>{t.home.facts.statusValue}</dd>
-              </div>
-              <div className="fact">
-                <dt>{t.home.facts.location}</dt>
-                <dd>{ne ? ORG.cityNe : ORG.cityEn}</dd>
-              </div>
-            </dl>
-          </aside>
+          </div>
+        </div>
+
+        {/* Proof strip — the credentials, as one clean line, no box. */}
+        <div className="proof enter d4">
+          <div className="shell proof-row">
+            <div className="proof-item">
+              <span>{t.home.facts.regNo}</span>
+              <b>{ne ? ORG.registrationNoNe : ORG.registrationNo}</b>
+            </div>
+            <div className="proof-item">
+              <span>{t.home.facts.pan}</span>
+              <b>{ne ? ORG.panNe : ORG.pan}</b>
+            </div>
+            <div className="proof-item">
+              <span>{t.home.facts.status}</span>
+              <b>{t.home.facts.statusValue}</b>
+            </div>
+            <div className="proof-item">
+              <span>{t.home.facts.location}</span>
+              <b>{ne ? ORG.cityNe : ORG.cityEn}</b>
+            </div>
+          </div>
         </div>
       </section>
 
