@@ -985,19 +985,6 @@ a.card:hover {
   }
 }
 
-/* A gentle rise on scroll. Deliberately animates `translate`, not opacity
-   or `transform`: it composes with the load animation above, and if the
-   scroll timeline never advances (a page too short to scroll) the worst
-   case is content sitting 10px low — never content that is invisible. */
-@keyframes rise {
-  from {
-    translate: 0 10px;
-  }
-  to {
-    translate: 0 0;
-  }
-}
-
 @media (prefers-reduced-motion: no-preference) {
   .page > * {
     --d: 0.44s;
@@ -1046,24 +1033,13 @@ a.card:hover {
   }
 }
 
-/* Scroll-driven reveal, where the browser supports it. No JavaScript, and
-   browsers without it simply show the content.
-
-   The band runs two animations at once: the time-based arrival above, and
-   this scroll-driven rise. Per-animation timelines keep them independent. */
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .page > .band {
-      animation-name: hang-in, rise;
-      animation-duration: 0.55s, auto;
-      animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1), linear;
-      animation-fill-mode: both, both;
-      animation-delay: var(--d), 0s;
-      animation-timeline: auto, view();
-      animation-range: normal, entry 0% entry 35%;
-    }
-  }
-}
+/* No scroll-driven reveal here, deliberately.
+   An earlier version paired the arrival animation with a `view()` timeline.
+   Chrome applied the view timeline to BOTH animations in the list, which
+   pinned the opacity keyframe at its start value and shipped a page whose
+   every band rendered at opacity 0 — a blank page in production.
+   The time-based transition above is the whole effect. Do not reintroduce
+   animation-timeline here without testing every page scrolled to the end. */
 
 /* ---------- utilities ---------- */
 
