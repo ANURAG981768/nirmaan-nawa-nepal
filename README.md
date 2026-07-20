@@ -1,6 +1,6 @@
-# निर्माण नव नेपाल · Nirmaan Nawa Nepal
+# निर्माण नव नेपाल · Nirman Nawa Nepal
 
-Website for Nirmaan Nawa Nepal (Build New Nepal), a registered non-profit
+Website for Nirman Nawa Nepal (Build New Nepal), a registered non-profit
 civic organisation in Kageshwari Manohara–6, Kathmandu.
 
 Bilingual (English / नेपाली), with a public complaints channel that accepts

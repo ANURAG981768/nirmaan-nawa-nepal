@@ -38,7 +38,7 @@ const en = {
   },
 
   home: {
-    metaTitle: "Nirmaan Nawa Nepal — Build New Nepal through civic action",
+    metaTitle: "Nirman Nawa Nepal — Build New Nepal through civic action",
     metaDesc:
       "A registered, non-partisan civic organisation in Kathmandu. Research on law and governance, youth civic education, scrutiny of public policy, and a public complaints channel.",
     eyebrow: "Kathmandu · Established 2082 · Registration no. 34",
@@ -117,12 +117,12 @@ const en = {
   },
 
   about: {
-    metaTitle: "About — Nirmaan Nawa Nepal",
+    metaTitle: "About — Nirman Nawa Nepal",
     metaDesc:
       "Who we are, what our constitution requires of us, how we are governed, and the registration details that make us verifiable.",
     tag: "About",
     title: "A civic organisation that can be checked.",
-    lead: "Nirmaan Nawa Nepal is a registered, non-partisan social organisation based in Kathmandu, established in 2082 BS under the Association Registration Act, 2034. We study how Nepal is governed, bring young citizens into democratic practice, and carry public concerns to the institutions responsible for them.",
+    lead: "Nirman Nawa Nepal is a registered, non-partisan social organisation based in Kathmandu, established in 2082 BS under the Association Registration Act, 2034. We study how Nepal is governed, bring young citizens into democratic practice, and carry public concerns to the institutions responsible for them.",
 
     storyTag: "Why we exist",
     storyTitle: "Civic knowledge, held by the people it affects.",
@@ -189,7 +189,7 @@ const en = {
   },
 
   programs: {
-    metaTitle: "Programs — Nirmaan Nawa Nepal",
+    metaTitle: "Programs — Nirman Nawa Nepal",
     metaDesc:
       "Civic education, research and study circles, policy analysis, community issue documentation, and institutional collaboration.",
     tag: "Programs",
@@ -236,7 +236,7 @@ const en = {
   },
 
   publications: {
-    metaTitle: "Publications — Nirmaan Nawa Nepal",
+    metaTitle: "Publications — Nirman Nawa Nepal",
     metaDesc:
       "Articles, research papers and civic briefings on law, governance, policy and public accountability in Nepal.",
     tag: "Publications",
@@ -272,7 +272,7 @@ const en = {
   },
 
   complaints: {
-    metaTitle: "File a complaint — Nirmaan Nawa Nepal",
+    metaTitle: "File a complaint — Nirman Nawa Nepal",
     metaDesc:
       "Report a civic or public service problem in Kathmandu. Anonymous submissions accepted. Every complaint gets a reference code you can track.",
     tag: "Public complaints",
@@ -364,9 +364,9 @@ const en = {
   },
 
   join: {
-    metaTitle: "Join — Nirmaan Nawa Nepal",
+    metaTitle: "Join — Nirman Nawa Nepal",
     metaDesc:
-      "Membership, volunteering and partnership with Nirmaan Nawa Nepal. Membership tiers and eligibility are set by our constitution.",
+      "Membership, volunteering and partnership with Nirman Nawa Nepal. Membership tiers and eligibility are set by our constitution.",
     tag: "Get involved",
     title: "Ask us something, or join us.",
     lead: "One form for all of it. Ask a question, apply for membership, offer to volunteer, or propose a partnership — say which below and it reaches the right person.",
@@ -455,9 +455,9 @@ const en = {
   },
 
   contact: {
-    metaTitle: "Contact — Nirmaan Nawa Nepal",
+    metaTitle: "Contact — Nirman Nawa Nepal",
     metaDesc:
-      "Reach Nirmaan Nawa Nepal in Kathmandu. Phone, email, social media, and a message form for questions, membership and partnership.",
+      "Reach Nirman Nawa Nepal in Kathmandu. Phone, email, social media, and a message form for questions, membership and partnership.",
     tag: "Contact",
     title: "Get in touch.",
     lead: "For membership, partnership, document requests, or press. If you are reporting a problem, the complaints form gives you a tracking code — use that instead.",
@@ -484,7 +484,7 @@ const en = {
     contactTitle: "Contact",
     registeredTitle: "Registered",
     registeredLine: "Registered under the Association Registration Act, 2034",
-    rights: "Nirmaan Nawa Nepal",
+    rights: "Nirman Nawa Nepal",
     nonProfit: "Non-profit · Non-partisan · Kathmandu",
   },
 

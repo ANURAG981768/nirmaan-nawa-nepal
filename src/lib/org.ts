@@ -12,7 +12,7 @@
 
 export const ORG = {
   nameNe: "निर्माण नव नेपाल",
-  nameEn: "Nirmaan Nawa Nepal",
+  nameEn: "Nirman Nawa Nepal",
   nameEnLegal: "Build New Nepal",
 
   /** Society registration — विधान दफा १, प्रमाण-पत्र */
@@ -36,7 +36,7 @@ export const ORG = {
   taxpayerTypeNe: "गैर सरकारी संस्था",
 
   /** विधान passed — पारित भएको मिति */
-  constitutionName: "The Constitution of Nirmaan Nawa Nepal, 2082",
+  constitutionName: "The Constitution of Nirman Nawa Nepal, 2082",
   constitutionNameNe: "निर्माण नव नेपालको विधान, २०८२",
   constitutionPassed: "2082/03/25 (BS)",
   constitutionPassedNe: "२०८२।०३।२५",
@@ -60,7 +60,7 @@ export const ORG = {
 /** Site URL — set NEXT_PUBLIC_SITE_URL on Vercel to the real domain. */
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
-  "https://nirmaannawanepal.org";
+  "https://nirmannawanepal.org";
 
 export const locales = ["en", "ne"] as const;
 export type Locale = (typeof locales)[number];
