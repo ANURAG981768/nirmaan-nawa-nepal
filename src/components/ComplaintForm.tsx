@@ -63,6 +63,10 @@ export default function ComplaintForm({ locale }: { locale: Locale }) {
       ? (state.message as keyof typeof t.complaints.errors)
       : null;
 
+  // React resets the form after an action runs, so a validation error would
+  // otherwise wipe a long description. Re-seed the fields from what was sent.
+  const v = state.status === "error" ? (state.values ?? {}) : {};
+
   return (
     <form action={action} className="form-wrap" noValidate>
       <input type="hidden" name="locale" value={locale} />
@@ -101,7 +105,7 @@ export default function ComplaintForm({ locale }: { locale: Locale }) {
                 type="radio"
                 name="category"
                 value={key}
-                defaultChecked={index === 0}
+                defaultChecked={v.category ? v.category === key : index === 0}
               />
               <span className="choice-body">
                 <b>{f.categories[key]}</b>
@@ -119,6 +123,7 @@ export default function ComplaintForm({ locale }: { locale: Locale }) {
           type="text"
           required
           maxLength={200}
+          defaultValue={v.subject ?? ""}
           placeholder={f.subjectPlaceholder}
         />
       </div>
@@ -130,6 +135,7 @@ export default function ComplaintForm({ locale }: { locale: Locale }) {
           name="location"
           type="text"
           maxLength={300}
+          defaultValue={v.location ?? ""}
           placeholder={f.locationPlaceholder}
         />
       </div>
@@ -142,6 +148,7 @@ export default function ComplaintForm({ locale }: { locale: Locale }) {
           required
           maxLength={8000}
           rows={8}
+          defaultValue={v.description ?? ""}
           placeholder={f.descPlaceholder}
           aria-describedby="description-hint"
         />
@@ -178,6 +185,7 @@ export default function ComplaintForm({ locale }: { locale: Locale }) {
           type="text"
           maxLength={200}
           autoComplete="off"
+          defaultValue={v.name ?? ""}
           placeholder={f.namePlaceholder}
         />
       </div>
@@ -189,7 +197,13 @@ export default function ComplaintForm({ locale }: { locale: Locale }) {
             ({t.common.optional})
           </span>
         </label>
-        <input id="email" name="email" type="email" maxLength={320} />
+        <input
+          id="email"
+          name="email"
+          type="email"
+          maxLength={320}
+          defaultValue={v.email ?? ""}
+        />
       </div>
 
       <div className="field">
@@ -199,11 +213,21 @@ export default function ComplaintForm({ locale }: { locale: Locale }) {
             ({t.common.optional})
           </span>
         </label>
-        <input id="phone" name="phone" type="tel" maxLength={60} />
+        <input
+          id="phone"
+          name="phone"
+          type="tel"
+          maxLength={60}
+          defaultValue={v.phone ?? ""}
+        />
       </div>
 
       <label className="choice" style={{ marginBottom: "1.75rem" }}>
-        <input type="checkbox" name="consent" />
+        <input
+          type="checkbox"
+          name="consent"
+          defaultChecked={v.consent === "on"}
+        />
         <span className="choice-body">
           <b style={{ fontWeight: 400 }}>{f.consentLabel}</b>
         </span>

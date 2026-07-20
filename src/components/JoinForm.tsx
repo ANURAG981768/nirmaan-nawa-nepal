@@ -32,6 +32,9 @@ export default function JoinForm({ locale }: { locale: Locale }) {
       ? (state.message as keyof typeof t.join.errors)
       : null;
 
+  // See ComplaintForm: React resets the form after an action runs.
+  const v = state.status === "error" ? (state.values ?? {}) : {};
+
   return (
     <form action={action} className="form-wrap" noValidate>
       <input type="hidden" name="locale" value={locale} />
@@ -92,6 +95,7 @@ export default function JoinForm({ locale }: { locale: Locale }) {
           required
           maxLength={200}
           autoComplete="name"
+          defaultValue={v.name ?? ""}
         />
       </div>
 
@@ -103,6 +107,7 @@ export default function JoinForm({ locale }: { locale: Locale }) {
           type="email"
           maxLength={320}
           autoComplete="email"
+          defaultValue={v.email ?? ""}
         />
       </div>
 
@@ -114,6 +119,7 @@ export default function JoinForm({ locale }: { locale: Locale }) {
           type="tel"
           maxLength={60}
           autoComplete="tel"
+          defaultValue={v.phone ?? ""}
         />
       </div>
 
@@ -124,6 +130,7 @@ export default function JoinForm({ locale }: { locale: Locale }) {
           name="address"
           type="text"
           maxLength={300}
+          defaultValue={v.address ?? ""}
           placeholder={f.addressPlaceholder}
         />
       </div>
@@ -137,6 +144,7 @@ export default function JoinForm({ locale }: { locale: Locale }) {
             name="organisation"
             type="text"
             maxLength={300}
+            defaultValue={v.organisation ?? ""}
             placeholder={f.orgPlaceholder}
           />
         </div>
@@ -149,12 +157,17 @@ export default function JoinForm({ locale }: { locale: Locale }) {
           name="interest"
           maxLength={4000}
           rows={6}
+          defaultValue={v.interest ?? ""}
           placeholder={f.interestPlaceholder}
         />
       </div>
 
       <label className="choice" style={{ marginBottom: "1.75rem" }}>
-        <input type="checkbox" name="declaration" />
+        <input
+          type="checkbox"
+          name="declaration"
+          defaultChecked={v.declaration === "on"}
+        />
         <span className="choice-body">
           <b style={{ fontWeight: 400 }}>{f.declarationLabel}</b>
         </span>

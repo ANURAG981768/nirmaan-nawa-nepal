@@ -6,9 +6,22 @@ import { getSupabase, makeReference } from "./supabase";
  * Complaints
  * ------------------------------------------------------------------ */
 
+/**
+ * React 19 resets a form after its action runs. Without echoing the
+ * submitted values back, a validation error would wipe everything the
+ * person typed — including a long complaint description. The forms read
+ * `values` back as defaultValue so nothing is lost.
+ */
+export type SubmittedValues = Record<string, string>;
+
 export type ComplaintState =
   | { status: "idle" }
-  | { status: "error"; field?: string; message: string }
+  | {
+      status: "error";
+      field?: string;
+      message: string;
+      values?: SubmittedValues;
+    }
   | { status: "done"; reference: string };
 
 const CATEGORIES = [
@@ -41,16 +54,38 @@ export async function submitComplaint(
     ? rawCategory
     : "other";
 
+  const location = clean(formData.get("location"), 300);
+  const name = clean(formData.get("name"), 200);
+  const email = clean(formData.get("email"), 320);
+  const phone = clean(formData.get("phone"), 60);
+  const consent = formData.get("consent") === "on";
+
+  const values: SubmittedValues = {
+    category,
+    subject,
+    location,
+    description,
+    name,
+    email,
+    phone,
+    consent: consent ? "on" : "",
+  };
+
   if (!subject) {
-    return { status: "error", field: "subject", message: "subject" };
+    return { status: "error", field: "subject", message: "subject", values };
   }
   if (description.length < 20) {
-    return { status: "error", field: "description", message: "description" };
+    return {
+      status: "error",
+      field: "description",
+      message: "description",
+      values,
+    };
   }
 
   const supabase = getSupabase();
   if (!supabase) {
-    return { status: "error", message: "generic" };
+    return { status: "error", message: "generic", values };
   }
 
   const reference = makeReference();
@@ -59,19 +94,19 @@ export async function submitComplaint(
     reference,
     category,
     subject,
-    location: clean(formData.get("location"), 300) || null,
+    location: location || null,
     description,
-    name: clean(formData.get("name"), 200) || null,
-    email: clean(formData.get("email"), 320) || null,
-    phone: clean(formData.get("phone"), 60) || null,
-    consent_to_forward: formData.get("consent") === "on",
+    name: name || null,
+    email: email || null,
+    phone: phone || null,
+    consent_to_forward: consent,
     status: "received",
     locale: clean(formData.get("locale"), 5) || "en",
   });
 
   if (error) {
     console.error("complaint insert failed", error.message);
-    return { status: "error", message: "generic" };
+    return { status: "error", message: "generic", values };
   }
 
   return { status: "done", reference };
@@ -110,13 +145,20 @@ export async function trackComplaint(
     return { status: "error", message: "notFound" };
   }
 
-  // Deliberately narrow: tracking never returns the reporter's identity,
-  // so a leaked code cannot expose who filed the complaint.
+  // Goes through the security-definer RPC, which returns a fixed narrow
+  // column list. The reporter's name, email and phone are not in it and
+  // cannot be projected out of it, so a leaked reference code cannot
+  // expose who filed the complaint.
   const { data, error } = await supabase
-    .from("complaints")
-    .select("reference, subject, category, status, created_at, public_note")
-    .eq("reference", reference)
-    .maybeSingle();
+    .rpc("track_complaint", { ref: reference })
+    .maybeSingle<{
+      reference: string;
+      subject: string;
+      category: string;
+      status: string;
+      created_at: string;
+      public_note: string | null;
+    }>();
 
   if (error || !data) {
     return { status: "error", message: "notFound" };
@@ -141,7 +183,12 @@ export async function trackComplaint(
 
 export type ApplicationState =
   | { status: "idle" }
-  | { status: "error"; field?: string; message: string }
+  | {
+      status: "error";
+      field?: string;
+      message: string;
+      values?: SubmittedValues;
+    }
   | { status: "done" };
 
 const INTENTS = ["general", "life", "volunteer", "partner"] as const;
@@ -162,19 +209,40 @@ export async function submitApplication(
     ? rawIntent
     : "general";
 
+  const address = clean(formData.get("address"), 300);
+  const organisation = clean(formData.get("organisation"), 300);
+  const interest = clean(formData.get("interest"), 4000);
+  const declared = formData.get("declaration") === "on";
+
+  const values: SubmittedValues = {
+    intent,
+    name,
+    email,
+    phone,
+    address,
+    organisation,
+    interest,
+    declaration: declared ? "on" : "",
+  };
+
   if (!name) {
-    return { status: "error", field: "name", message: "name" };
+    return { status: "error", field: "name", message: "name", values };
   }
   if (!email && !phone) {
-    return { status: "error", field: "email", message: "contact" };
+    return { status: "error", field: "email", message: "contact", values };
   }
-  if (formData.get("declaration") !== "on") {
-    return { status: "error", field: "declaration", message: "declaration" };
+  if (!declared) {
+    return {
+      status: "error",
+      field: "declaration",
+      message: "declaration",
+      values,
+    };
   }
 
   const supabase = getSupabase();
   if (!supabase) {
-    return { status: "error", message: "generic" };
+    return { status: "error", message: "generic", values };
   }
 
   const { error } = await supabase.from("applications").insert({
@@ -182,9 +250,9 @@ export async function submitApplication(
     name,
     email: email || null,
     phone: phone || null,
-    address: clean(formData.get("address"), 300) || null,
-    organisation: clean(formData.get("organisation"), 300) || null,
-    interest: clean(formData.get("interest"), 4000) || null,
+    address: address || null,
+    organisation: organisation || null,
+    interest: interest || null,
     declaration_accepted: true,
     status: "new",
     locale: clean(formData.get("locale"), 5) || "en",
@@ -192,7 +260,7 @@ export async function submitApplication(
 
   if (error) {
     console.error("application insert failed", error.message);
-    return { status: "error", message: "generic" };
+    return { status: "error", message: "generic", values };
   }
 
   return { status: "done" };

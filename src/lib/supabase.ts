@@ -3,11 +3,19 @@ import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 /**
  * Server-only Supabase client.
  *
- * The service-role key never reaches the browser — it is read here, inside
- * modules that only ever run in server actions. If the environment is not
- * configured the factory returns null rather than throwing, so the site
- * still builds and renders; the forms then tell people to email instead of
- * failing silently.
+ * This deliberately uses the publishable key, not a service-role key.
+ * The database is locked down so the publishable key can do exactly two
+ * things and nothing else:
+ *
+ *   - INSERT into complaints and applications (RLS insert policies)
+ *   - call track_complaint(), which returns a fixed narrow column list
+ *
+ * It cannot SELECT either table. So even if this key leaked, no one could
+ * read a complaint, and no one could learn who filed one. There is no
+ * service-role key in this application at all.
+ *
+ * The key is still kept out of the browser (no NEXT_PUBLIC_ prefix) so all
+ * writes go through the server actions and their validation and honeypot.
  */
 
 let cached: SupabaseClient | null | undefined;
@@ -15,8 +23,8 @@ let cached: SupabaseClient | null | undefined;
 export function getSupabase(): SupabaseClient | null {
   if (cached !== undefined) return cached;
 
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const url = process.env.SUPABASE_URL;
+  const key = process.env.SUPABASE_PUBLISHABLE_KEY;
 
   if (!url || !key) {
     cached = null;
@@ -27,13 +35,6 @@ export function getSupabase(): SupabaseClient | null {
     auth: { persistSession: false, autoRefreshToken: false },
   });
   return cached;
-}
-
-export function isSupabaseConfigured(): boolean {
-  return Boolean(
-    process.env.NEXT_PUBLIC_SUPABASE_URL &&
-      process.env.SUPABASE_SERVICE_ROLE_KEY,
-  );
 }
 
 /**
