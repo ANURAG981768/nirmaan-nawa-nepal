@@ -399,7 +399,7 @@ const en = {
     eligibilityTag: "Eligibility",
     eligibilityTitle: "Who can be a member.",
     eligibilityLead:
-      "These conditions come from Clause 7 of our constitution. The political-party condition is what allows us to scrutinise government credibly.",
+      "These conditions are set by our constitution. The political-party condition is what lets us scrutinise government credibly.",
     eligibility: [
       "A Nepali citizen",
       "Eighteen years of age or older",
@@ -436,7 +436,7 @@ const en = {
       interestPlaceholder:
         "Research, civic education, policy analysis, documentation, events, communications — and anything you already know how to do.",
       declarationLabel:
-        "I meet the conditions in Clause 7, including that I am not a member of any political party.",
+        "I meet the membership conditions, including that I am not a member of any political party.",
       submit: "Send",
       submitting: "Sending…",
     },
@@ -448,7 +448,7 @@ const en = {
       name: "Please give your name.",
       contact: "Please give an email or a phone number so we can reply.",
       declaration:
-        "Please confirm you meet the membership conditions in Clause 7.",
+        "Please confirm you meet the membership conditions.",
       generic:
         "The application could not be sent. Please try again, or email us directly.",
     },
@@ -884,7 +884,7 @@ const ne: Copy = {
     eligibilityTag: "योग्यता",
     eligibilityTitle: "को सदस्य बन्न सक्छ।",
     eligibilityLead:
-      "यी सर्त विधानको दफा ७ बाट आएका हुन्। राजनीतिक दलसम्बन्धी सर्तले नै हामीलाई सरकारी कामको अनुगमन विश्वसनीय ढंगले गर्न दिन्छ।",
+      "यी सर्त विधानले तोकेका हुन्। राजनीतिक दलसम्बन्धी सर्तले नै हामीलाई सरकारी कामको अनुगमन विश्वसनीय ढंगले गर्न दिन्छ।",
     eligibility: [
       "नेपाली नागरिक",
       "अठार वर्ष उमेर पुगेको",
@@ -921,7 +921,7 @@ const ne: Copy = {
       interestPlaceholder:
         "अनुसन्धान, नागरिक शिक्षा, नीति विश्लेषण, अभिलेखीकरण, कार्यक्रम, सञ्चार — र तपाईंलाई पहिले नै आउने कुनै सीप।",
       declarationLabel:
-        "म दफा ७ का सर्त पूरा गर्छु, कुनै पनि राजनीतिक दलको सदस्य नरहेको समेत।",
+        "म सदस्यताका सर्त पूरा गर्छु, कुनै पनि राजनीतिक दलको सदस्य नरहेको समेत।",
       submit: "पठाउनुहोस्",
       submitting: "पठाउँदै…",
     },
@@ -932,7 +932,7 @@ const ne: Copy = {
     errors: {
       name: "कृपया आफ्नो नाम लेख्नुहोस्।",
       contact: "जवाफ दिन सकियोस् भनेर इमेल वा फोन नम्बर दिनुहोस्।",
-      declaration: "कृपया दफा ७ का सदस्यता सर्त पूरा गरेको पुष्टि गर्नुहोस्।",
+      declaration: "कृपया सदस्यताका सर्त पूरा गरेको पुष्टि गर्नुहोस्।",
       generic:
         "आवेदन पठाउन सकिएन। कृपया फेरि प्रयास गर्नुहोस्, वा सीधै इमेल गर्नुहोस्।",
     },
