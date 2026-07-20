@@ -5,6 +5,7 @@ import { isLocale, ORG, type Locale } from "@/lib/org";
 import { getCopy } from "@/lib/content";
 import { Band, BandHead, Hang } from "@/components/Band";
 import { ObjectiveIcon } from "@/components/Icons";
+import ContourField from "@/components/ContourField";
 import ComplaintForm from "@/components/ComplaintForm";
 
 export default async function HomePage({
@@ -23,6 +24,7 @@ export default async function HomePage({
       {/* Hero: the emblem carries the identity, the copy carries the
           purpose, and a proof strip beneath holds the credentials. */}
       <section className="hero">
+        <ContourField />
         <div className="shell hero-grid">
           <div className="hero-copy">
             <p className="tag enter d1">{t.home.eyebrow}</p>

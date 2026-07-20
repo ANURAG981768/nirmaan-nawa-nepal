@@ -476,6 +476,63 @@ summary:focus-visible {
 .hero {
   padding-block: clamp(2.75rem, 6vw, 5rem) clamp(2.5rem, 5vw, 4rem);
   position: relative;
+  overflow: hidden;
+}
+
+/* Topographic backdrop — faint drifting contour lines. */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  color: var(--line-strong);
+  opacity: 0.4;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 18%,
+    #000 78%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 18%,
+    #000 78%,
+    transparent
+  );
+}
+
+.contours {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 200%;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .contours {
+    animation: contour-drift 42s linear infinite;
+  }
+}
+
+@keyframes contour-drift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Keep hero content above the backdrop. */
+.hero-grid,
+.hero .proof {
+  position: relative;
+  z-index: 1;
 }
 
 /* Text and emblem sit as one centred pair — no dead space on either side,
