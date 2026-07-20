@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { NAV, ORG, type Locale } from "@/lib/org";
 import { getCopy } from "@/lib/content";
 
@@ -11,11 +11,6 @@ export default function Masthead({ locale }: { locale: Locale }) {
   const t = getCopy(locale);
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-
-  // A menu left open across a navigation is a papercut on phones.
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
 
   const stripped = pathname.replace(/^\/(en|ne)/, "") || "/";
   const other: Locale = locale === "en" ? "ne" : "en";
@@ -50,6 +45,7 @@ export default function Masthead({ locale }: { locale: Locale }) {
               href={link.href}
               data-active={link.active}
               aria-current={link.active ? "page" : undefined}
+              onClick={() => setOpen(false)}
             >
               {link.label}
             </Link>

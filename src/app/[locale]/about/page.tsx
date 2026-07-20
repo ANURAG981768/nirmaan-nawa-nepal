@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { isLocale, ORG, type Locale } from "@/lib/org";
+import { isLocale, type Locale } from "@/lib/org";
 import { getCopy } from "@/lib/content";
 import Link from "next/link";
 import { Band, BandHead, Hang } from "@/components/Band";
@@ -30,8 +30,6 @@ export default async function AboutPage({
   if (!isLocale(locale)) notFound();
   const l = locale as Locale;
   const t = getCopy(l);
-  const ne = l === "ne";
-
 
   return (
     <>

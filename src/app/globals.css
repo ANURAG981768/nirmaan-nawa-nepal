@@ -7,16 +7,22 @@
    ============================================================ */
 
 :root {
-  --ink: #101f3d;
-  --ink-soft: #1c3057;
-  --ink-deep: #0a1529;
-  --clay: #bd5334;
-  --clay-soft: #d97a58;
-  --paper: #fbfaf7;
-  --paper-warm: #f4f1ea;
-  --slate: #59617a;
-  --line: #d9d4c8;
-  --line-strong: #b9b2a3;
+  --ink: #07111f;
+  --ink-soft: #102946;
+  --ink-deep: #020711;
+  --clay: #ff5d3d;
+  --clay-soft: #ff9a77;
+  --paper: #f7fbff;
+  --paper-warm: #eaf3f7;
+  --slate: #526276;
+  --line: rgba(13, 42, 71, 0.16);
+  --line-strong: rgba(13, 42, 71, 0.34);
+  --signal: #00c2ff;
+  --signal-soft: #82e8ff;
+  --leaf: #19b77a;
+  --violet: #725cff;
+  --glass: rgba(255, 255, 255, 0.72);
+  --glass-dark: rgba(6, 16, 31, 0.72);
 
   /* Names are deliberately not --font-sans/serif/mono: Tailwind v4 already
      defines those as theme variables on :root and would shadow ours. */
@@ -39,7 +45,11 @@ html {
 
 body {
   margin: 0;
-  background: var(--paper);
+  background:
+    linear-gradient(90deg, rgba(0, 194, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 93, 61, 0.05) 0, transparent 21rem),
+    linear-gradient(180deg, #f7fbff 0, #eef5f8 48%, #f9fbf7 100%);
+  background-size: 5.5rem 5.5rem, auto, auto;
   color: var(--ink);
   font-family: var(--body);
   font-size: 1rem;
@@ -69,7 +79,7 @@ body {
 .d-sm {
   font-family: var(--display);
   font-weight: 400;
-  letter-spacing: -0.015em;
+  letter-spacing: 0;
   line-height: 1.08;
   margin: 0;
 }
@@ -176,6 +186,10 @@ body {
   border-top: var(--rule-w) solid var(--line);
   padding-block: clamp(3.5rem, 7vw, 6.5rem);
   position: relative;
+  background:
+    linear-gradient(90deg, rgba(0, 194, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0));
+  background-size: 5.5rem 5.5rem, auto;
 }
 
 .band-tight {
@@ -183,18 +197,23 @@ body {
 }
 
 .band-ink {
-  background: var(--ink);
+  background:
+    linear-gradient(90deg, rgba(0, 194, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(135deg, #020711, #071b31 54%, #131323);
+  background-size: 4.5rem 4.5rem, 4.5rem 4.5rem, auto;
   color: var(--paper);
-  border-top-color: var(--ink);
+  border-top-color: rgba(0, 194, 255, 0.24);
+  box-shadow: 0 -1px 0 rgba(0, 194, 255, 0.12) inset;
 }
 
 .band-ink .lead,
 .band-ink .prose-body {
-  color: #b9c2d6;
+  color: #c1d4e5;
 }
 
 .band-ink .tag {
-  color: var(--clay-soft);
+  color: var(--signal-soft);
 }
 
 .band-ink .clause {
@@ -235,7 +254,7 @@ body {
 
 .ticks i {
   width: var(--rule-w);
-  background: var(--line-strong);
+  background: rgba(0, 194, 255, 0.32);
   flex: none;
   height: 100%;
   display: block;
@@ -249,7 +268,7 @@ body {
 }
 
 .band-ink .ticks i {
-  background: #3c4d73;
+  background: rgba(130, 232, 255, 0.34);
 }
 
 /* ---------- masthead ---------- */
@@ -258,9 +277,10 @@ body {
   position: sticky;
   top: 0;
   z-index: 60;
-  background: var(--paper);
-  border-bottom: var(--rule-w) solid var(--line);
-  /* No backdrop-blur: it vibrates on scrolling sticky bars on mobile. */
+  background: rgba(247, 251, 255, 0.78);
+  border-bottom: var(--rule-w) solid rgba(0, 194, 255, 0.18);
+  box-shadow: 0 18px 55px rgba(3, 8, 18, 0.08);
+  backdrop-filter: blur(18px) saturate(130%);
   transform: translateZ(0);
 }
 
@@ -286,6 +306,7 @@ body {
   height: 42px;
   object-fit: contain;
   flex: none;
+  filter: drop-shadow(0 0 14px rgba(0, 194, 255, 0.22));
 }
 
 .brand-name {
@@ -306,7 +327,7 @@ body {
   font-size: 0.5625rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--slate);
+  color: #60758c;
 }
 
 .nav {
@@ -320,15 +341,16 @@ body {
   text-decoration: none;
   font-size: 0.9375rem;
   font-weight: 500;
-  padding-block: 0.35rem;
+  padding: 0.45rem 0.15rem;
   border-bottom: 2px solid transparent;
-  transition: color 0.18s ease, border-color 0.18s ease;
+  transition: color 0.18s ease, border-color 0.18s ease, text-shadow 0.18s ease;
 }
 
 .nav a:hover,
 .nav a[data-active="true"] {
   color: var(--ink);
-  border-bottom-color: var(--clay);
+  border-bottom-color: var(--signal);
+  text-shadow: 0 0 18px rgba(0, 194, 255, 0.34);
 }
 
 .nav-desktop {
@@ -354,10 +376,11 @@ body {
 .lang {
   display: inline-flex;
   align-items: stretch;
-  border: var(--rule-w) solid var(--line-strong);
-  border-radius: 2px;
+  border: var(--rule-w) solid rgba(0, 194, 255, 0.28);
+  border-radius: 999px;
   overflow: hidden;
   flex: none;
+  background: rgba(255, 255, 255, 0.48);
 }
 
 .lang a {
@@ -380,9 +403,9 @@ body {
 
 .nav-toggle {
   appearance: none;
-  background: none;
-  border: var(--rule-w) solid var(--line-strong);
-  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.48);
+  border: var(--rule-w) solid rgba(0, 194, 255, 0.28);
+  border-radius: 999px;
   padding: 0.5rem 0.7rem;
   font-family: var(--mono);
   font-size: 0.6875rem;
@@ -415,33 +438,42 @@ body {
   font-size: 0.9375rem;
   font-weight: 600;
   padding: 0.8rem 1.35rem;
-  border-radius: 2px;
+  border-radius: 999px;
   text-decoration: none;
   border: var(--rule-w) solid transparent;
   cursor: pointer;
-  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease,
+    box-shadow 0.18s ease, transform 0.18s ease;
   line-height: 1.2;
 }
 
 .btn-primary {
-  background: var(--clay);
+  background: linear-gradient(135deg, var(--clay), #ff7b44 48%, var(--signal));
   color: #fff;
-  border-color: var(--clay);
+  border-color: transparent;
+  box-shadow: 0 14px 34px rgba(255, 93, 61, 0.28),
+    0 0 0 1px rgba(255, 255, 255, 0.22) inset;
 }
 
 .btn-primary:hover {
-  background: #a5462b;
-  border-color: #a5462b;
+  background: linear-gradient(135deg, #ff6a49, #ff9c58 48%, #20d7ff);
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 18px 46px rgba(0, 194, 255, 0.2),
+    0 18px 42px rgba(255, 93, 61, 0.24);
 }
 
 .btn-ghost {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.52);
   color: var(--ink);
-  border-color: var(--line-strong);
+  border-color: rgba(13, 42, 71, 0.22);
 }
 
 .btn-ghost:hover {
-  border-color: var(--ink);
+  border-color: var(--signal);
+  color: var(--ink);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 194, 255, 0.12);
 }
 
 .band-ink .btn-ghost {
@@ -477,6 +509,36 @@ summary:focus-visible {
   padding-block: clamp(2.75rem, 6vw, 5rem) clamp(2.5rem, 5vw, 4rem);
   position: relative;
   overflow: hidden;
+  min-height: calc(100vh - 4.5rem);
+  display: grid;
+  align-items: center;
+  color: #f8fbff;
+  background:
+    linear-gradient(90deg, rgba(0, 194, 255, 0.12) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(135deg, #020711 0%, #071b31 48%, #111421 100%);
+  background-size: 4rem 4rem, 4rem 4rem, auto;
+  border-bottom: 1px solid rgba(0, 194, 255, 0.22);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(120deg, transparent 0 39%, rgba(0, 194, 255, 0.16) 40%, transparent 42% 58%, rgba(255, 93, 61, 0.13) 59%, transparent 61%),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 7px);
+  opacity: 0.72;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--signal), var(--clay), transparent);
+  box-shadow: 0 0 34px rgba(0, 194, 255, 0.7);
 }
 
 /* Topographic backdrop — faint drifting contour lines. */
@@ -486,8 +548,8 @@ summary:focus-visible {
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
-  color: var(--line-strong);
-  opacity: 0.4;
+  color: var(--signal-soft);
+  opacity: 0.22;
   -webkit-mask-image: linear-gradient(
     to bottom,
     transparent,
@@ -550,6 +612,19 @@ summary:focus-visible {
   min-width: 0;
 }
 
+.hero .tag {
+  color: var(--clay-soft);
+}
+
+.hero .d-xl {
+  color: #ffffff;
+  text-shadow: 0 0 34px rgba(0, 194, 255, 0.18);
+}
+
+.hero .lead {
+  color: #c7d7e7;
+}
+
 .hero-emblem {
   flex: 0 0 auto;
 }
@@ -557,9 +632,10 @@ summary:focus-visible {
 .hero-sub {
   font-family: var(--display);
   font-size: clamp(1.35rem, 2.6vw, 2rem);
-  color: var(--clay);
+  color: var(--signal-soft);
   line-height: 1.2;
   margin: 0.4rem 0 0;
+  text-shadow: 0 0 28px rgba(0, 194, 255, 0.25);
 }
 
 .hero-actions {
@@ -575,18 +651,41 @@ summary:focus-visible {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  isolation: isolate;
+  padding: clamp(1rem, 2vw, 1.4rem);
+}
+
+.hero-emblem::before,
+.hero-emblem::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(0, 194, 255, 0.36);
+  border-radius: 28px;
+  transform: rotate(-5deg);
+  z-index: -1;
+}
+
+.hero-emblem::after {
+  inset: 1.1rem;
+  border-color: rgba(255, 93, 61, 0.42);
+  transform: rotate(6deg);
 }
 
 .hero-emblem img {
   width: clamp(280px, 34vw, 380px);
   height: auto;
   display: block;
+  border-radius: 50%;
+  filter: drop-shadow(0 26px 55px rgba(0, 0, 0, 0.45))
+    drop-shadow(0 0 32px rgba(0, 194, 255, 0.28));
 }
 
 /* Proof strip — the credentials as one clean line, hanging from a rule. */
 .proof {
   margin-top: clamp(2.5rem, 5vw, 3.75rem);
-  border-top: var(--rule-w) solid var(--line);
+  border-top: var(--rule-w) solid rgba(0, 194, 255, 0.28);
 }
 
 .proof-row {
@@ -614,7 +713,7 @@ summary:focus-visible {
   flex-direction: column;
   gap: 0.3rem;
   padding-block: 0.75rem;
-  border-top: var(--rule-w) solid var(--line);
+  border-top: var(--rule-w) solid rgba(0, 194, 255, 0.25);
 }
 
 @media (min-width: 640px) {
@@ -629,7 +728,7 @@ summary:focus-visible {
   font-size: 0.625rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--slate);
+  color: rgba(185, 232, 255, 0.76);
 }
 
 :lang(ne) .proof-item span {
@@ -645,7 +744,8 @@ summary:focus-visible {
   font-weight: 400;
   font-size: 1.15rem;
   line-height: 1.25;
-  color: var(--ink);
+  color: #ffffff;
+  text-shadow: 0 0 20px rgba(0, 194, 255, 0.18);
 }
 
 .seal-facts {
@@ -734,16 +834,30 @@ summary:focus-visible {
 /* Objective card — the four commitments. A clay rule on top, a drawn
    icon, then the copy. This is the homepage's main graphic device. */
 .objective {
-  border-top: 2px solid var(--clay);
-  padding-top: 1.25rem;
+  border: 1px solid rgba(13, 42, 71, 0.13);
+  border-top: 2px solid var(--signal);
+  border-radius: 22px;
+  padding: clamp(1.15rem, 2.4vw, 1.55rem);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.58)),
+    linear-gradient(135deg, rgba(0, 194, 255, 0.11), rgba(255, 93, 61, 0.07));
+  box-shadow: 0 18px 45px rgba(13, 42, 71, 0.08);
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
+  min-height: 100%;
 }
 
 .objective-icon {
-  color: var(--clay);
+  color: var(--signal);
   display: inline-flex;
+  width: 52px;
+  height: 52px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background: rgba(0, 194, 255, 0.1);
+  box-shadow: 0 0 0 1px rgba(0, 194, 255, 0.18) inset;
 }
 
 .objective h3 {
@@ -766,11 +880,17 @@ summary:focus-visible {
 }
 
 .band-ink .objective {
-  border-top-color: var(--clay-soft);
+  border-color: rgba(130, 232, 255, 0.2);
+  border-top-color: var(--signal-soft);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.035)),
+    linear-gradient(135deg, rgba(0, 194, 255, 0.12), rgba(255, 93, 61, 0.06));
 }
 
 .band-ink .objective-icon {
-  color: var(--clay-soft);
+  color: var(--signal-soft);
+  background: rgba(0, 194, 255, 0.12);
+  box-shadow: 0 0 0 1px rgba(130, 232, 255, 0.18) inset;
 }
 
 .band-ink .objective p {
@@ -779,8 +899,12 @@ summary:focus-visible {
 
 /* An item hangs from its own short rule. */
 .hang {
-  border-top: var(--rule-w) solid var(--line-strong);
-  padding-top: 1.1rem;
+  border: 1px solid rgba(13, 42, 71, 0.14);
+  border-top: 2px solid rgba(255, 93, 61, 0.75);
+  border-radius: 20px;
+  padding: clamp(1.15rem, 2.2vw, 1.45rem);
+  background: rgba(255, 255, 255, 0.68);
+  box-shadow: 0 16px 40px rgba(13, 42, 71, 0.06);
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
@@ -813,30 +937,53 @@ summary:focus-visible {
 }
 
 .band-ink .hang {
-  border-top-color: #3c4d73;
+  border-color: rgba(130, 232, 255, 0.16);
+  border-top-color: rgba(130, 232, 255, 0.64);
+  background: rgba(255, 255, 255, 0.045);
 }
 
 .band-ink .hang p {
   color: #a9b4cc;
 }
 
+.band-ink .card,
+.band-ink .form-wrap,
+.band-ink .receipt {
+  color: var(--paper);
+  border-color: rgba(130, 232, 255, 0.18);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04)),
+    linear-gradient(135deg, rgba(0, 194, 255, 0.09), rgba(255, 93, 61, 0.06));
+}
+
+.band-ink .card p,
+.band-ink .field-hint,
+.band-ink .choice-body small {
+  color: #a9b4cc;
+}
+
 /* ---------- cards ---------- */
 
 .card {
-  border: var(--rule-w) solid var(--line);
-  background: #fff;
+  border: var(--rule-w) solid rgba(13, 42, 71, 0.14);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.68)),
+    linear-gradient(135deg, rgba(0, 194, 255, 0.1), rgba(114, 92, 255, 0.08));
   padding: clamp(1.25rem, 2.4vw, 1.75rem);
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   text-decoration: none;
   color: inherit;
-  transition: border-color 0.18s ease, transform 0.18s ease;
+  box-shadow: 0 18px 48px rgba(13, 42, 71, 0.08);
+  transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
 }
 
 a.card:hover {
-  border-color: var(--ink);
+  border-color: rgba(0, 194, 255, 0.7);
   transform: translateY(-2px);
+  box-shadow: 0 22px 54px rgba(0, 194, 255, 0.12);
 }
 
 .card h3 {
@@ -867,6 +1014,13 @@ a.card:hover {
 
 .form-wrap {
   max-width: 40rem;
+  padding: clamp(1.1rem, 2.4vw, 1.7rem);
+  border: 1px solid rgba(13, 42, 71, 0.14);
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.66)),
+    linear-gradient(135deg, rgba(0, 194, 255, 0.09), rgba(255, 93, 61, 0.06));
+  box-shadow: 0 20px 56px rgba(13, 42, 71, 0.1);
 }
 
 .field {
@@ -898,9 +1052,9 @@ a.card:hover {
   font-family: var(--body);
   font-size: 1rem;
   color: var(--ink);
-  background: #fff;
-  border: var(--rule-w) solid var(--line-strong);
-  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.86);
+  border: var(--rule-w) solid rgba(13, 42, 71, 0.22);
+  border-radius: 14px;
   padding: 0.7rem 0.85rem;
   line-height: 1.5;
 }
@@ -924,11 +1078,11 @@ a.card:hover {
   display: flex;
   gap: 0.6rem;
   align-items: flex-start;
-  border: var(--rule-w) solid var(--line-strong);
-  border-radius: 2px;
+  border: var(--rule-w) solid rgba(13, 42, 71, 0.18);
+  border-radius: 16px;
   padding: 0.85rem 1rem;
   cursor: pointer;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.76);
   transition: border-color 0.15s ease, background 0.15s ease;
 }
 
@@ -960,8 +1114,9 @@ a.card:hover {
 }
 
 .choice:has(input:checked) {
-  border-color: var(--clay);
-  background: #fdf6f3;
+  border-color: var(--signal);
+  background: rgba(229, 249, 255, 0.78);
+  box-shadow: 0 0 0 1px rgba(0, 194, 255, 0.16) inset;
 }
 
 .form-note {
@@ -1003,10 +1158,14 @@ a.card:hover {
 /* ---------- receipt (complaint reference) ---------- */
 
 .receipt {
-  border: var(--rule-w) solid var(--ink);
-  background: #fff;
+  border: var(--rule-w) solid rgba(0, 194, 255, 0.38);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.7)),
+    linear-gradient(135deg, rgba(0, 194, 255, 0.11), rgba(255, 93, 61, 0.08));
   padding: clamp(1.5rem, 3vw, 2.25rem);
   max-width: 36rem;
+  border-radius: 22px;
+  box-shadow: 0 22px 58px rgba(13, 42, 71, 0.12);
 }
 
 .receipt-code {
@@ -1026,9 +1185,12 @@ a.card:hover {
 /* ---------- footer ---------- */
 
 .footer {
-  background: var(--ink-deep);
+  background:
+    linear-gradient(90deg, rgba(0, 194, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(180deg, #020711, #07111f);
+  background-size: 4rem 4rem, auto;
   color: #9dabc6;
-  border-top: 3px solid var(--clay);
+  border-top: 1px solid rgba(0, 194, 255, 0.32);
   padding-block: clamp(3rem, 6vw, 4.5rem) 2rem;
 }
 
