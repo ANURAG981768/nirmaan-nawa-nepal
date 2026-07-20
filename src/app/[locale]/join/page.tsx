@@ -53,12 +53,12 @@ export default async function JoinPage({
           {t.join.tiers.map((tier) => (
             <article className="card" key={tier.name}>
               <div className="hang-head">
-                <p className="tag tag-quiet">{tier.name}</p>
+                <p className="tag tag-quiet">{tier.note}</p>
                 <span className="clause">
                   {t.common.clausePrefix} {tier.clause}
                 </span>
               </div>
-              <h3>{tier.price}</h3>
+              <h3>{tier.name}</h3>
               <p>{tier.body}</p>
             </article>
           ))}

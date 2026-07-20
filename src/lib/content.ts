@@ -110,7 +110,7 @@ const en = {
     joinTag: "Get involved",
     joinTitle: "Membership is open to any Nepali citizen over eighteen.",
     joinBody:
-      "General membership costs Rs 50 to enter and Rs 200 a year. Life membership is a one-time Rs 1,000. The fees and the conditions are set by our constitution, not by us.",
+      "Membership is open to any Nepali citizen over eighteen who is not affiliated with a political party. The tiers and conditions are set by our constitution, not by us.",
     joinCta: "Apply for membership",
     joinVolunteer: "Volunteer instead",
   },
@@ -370,26 +370,26 @@ const en = {
     lead: "One form for all of it. Ask a question, apply for membership, offer to volunteer, or propose a partnership — say which below and it reaches the right person.",
 
     tiersTag: "Membership",
-    tiersTitle: "The tiers, and what they cost.",
+    tiersTitle: "Three ways to be a member.",
     tiersLead:
-      "These fees are fixed by our constitution, not set by whoever is in charge. Fees are paid after your application is accepted by the Working Committee — do not send money with this form.",
+      "The tiers and their conditions are set by our constitution, not by whoever is in charge. Apply below — the Working Committee reviews every application and will tell you what comes next. Please don't send anything with the form.",
     tiers: [
       {
         name: "General member",
-        price: "Rs 50 entry + Rs 200 per year",
-        body: "Full membership with a vote in the General Assembly. Renewed each year by the end of Ashar for Rs 75.",
+        note: "Open to any Nepali citizen over eighteen",
+        body: "Full membership with a vote in the General Assembly, renewed each year.",
         clause: "10(a)",
       },
       {
         name: "Life member",
-        price: "Rs 1,000 once",
-        body: "One-time payment, no renewal. Same standing in the General Assembly as a general member.",
+        note: "A one-time commitment, no renewal",
+        body: "The same standing in the General Assembly as a general member, for life.",
         clause: "10(c)",
       },
       {
         name: "Honorary member",
-        price: "By decision of the Assembly",
-        body: "Granted to people who have made a distinguished contribution to social work. Honorary members are invited to the Assembly but do not vote.",
+        note: "Granted by the Assembly",
+        body: "For people who have made a distinguished contribution to social work. Honorary members are invited to the Assembly, and do not vote.",
         clause: "10(d)",
       },
     ],
@@ -590,7 +590,7 @@ const ne: Copy = {
     joinTag: "सहभागी हुनुहोस्",
     joinTitle: "अठार वर्ष पुगेका जुनसुकै नेपाली नागरिक सदस्य बन्न सक्नुहुन्छ।",
     joinBody:
-      "साधारण सदस्यताका लागि प्रवेश शुल्क रु ५० र वार्षिक रु २००। आजीवन सदस्यता एकमुष्ट रु १,०००। यी शुल्क र सर्त विधानले तोकेका हुन्, हामीले होइन।",
+      "अठार वर्ष पुगेका, कुनै राजनीतिक दलमा आबद्ध नरहेका जुनसुकै नेपाली नागरिक सदस्य बन्न सक्नुहुन्छ। सदस्यताका तह र सर्त विधानले तोकेका हुन्, हामीले होइन।",
     joinCta: "सदस्यताका लागि आवेदन",
     joinVolunteer: "स्वयंसेवक बन्नुहोस्",
   },
@@ -850,26 +850,26 @@ const ne: Copy = {
     lead: "सबैका लागि एउटै फारम। प्रश्न सोध्नुहोस्, सदस्यताका लागि आवेदन दिनुहोस्, स्वयंसेवाको प्रस्ताव राख्नुहोस्, वा साझेदारीको कुरा गर्नुहोस् — तल छान्नुहोस्, सम्बन्धित व्यक्तिसम्म पुग्छ।",
 
     tiersTag: "सदस्यता",
-    tiersTitle: "तह, र त्यसको शुल्क।",
+    tiersTitle: "सदस्य बन्ने तीन तह।",
     tiersLead:
-      "यी शुल्क विधानले तोकेका हुन्, नेतृत्वमा जो भए पनि फेरिँदैनन्। कार्य समितिले आवेदन स्वीकृत गरेपछि मात्र शुल्क बुझाउने हो — यो फारमसँगै पैसा नपठाउनुहोस्।",
+      "सदस्यताका तह र सर्त विधानले तोकेका हुन्, नेतृत्वमा जो भए पनि फेरिँदैनन्। तल आवेदन दिनुहोस् — कार्य समितिले हरेक आवेदन हेर्छ र अबको प्रक्रिया के हो भनी जानकारी दिनेछ। फारमसँगै केही नपठाउनुहोस्।",
     tiers: [
       {
         name: "साधारण सदस्य",
-        price: "प्रवेश रु ५० + वार्षिक रु २००",
-        body: "साधारण सभामा मताधिकारसहितको पूर्ण सदस्यता। प्रत्येक वर्ष असार मसान्तभित्र रु ७५ मा नवीकरण।",
+        note: "अठार वर्ष पुगेका जुनसुकै नेपाली नागरिकका लागि खुला",
+        body: "साधारण सभामा मताधिकारसहितको पूर्ण सदस्यता, प्रत्येक वर्ष नवीकरण हुने।",
         clause: "१०(क)",
       },
       {
         name: "आजीवन सदस्य",
-        price: "एकमुष्ट रु १,०००",
-        body: "एकपटक बुझाएपछि नवीकरण गर्नु पर्दैन। साधारण सभामा साधारण सदस्यसरहकै हैसियत।",
+        note: "एकपटकको, नवीकरण नचाहिने",
+        body: "साधारण सभामा साधारण सदस्यसरहकै हैसियत, जीवनभरका लागि।",
         clause: "१०(ग)",
       },
       {
         name: "मानार्थ सदस्य",
-        price: "साधारण सभाको निर्णयबाट",
-        body: "सामाजिक क्षेत्रमा विशिष्ट योगदान पुर्‍याएका व्यक्तिलाई प्रदान गरिन्छ। मानार्थ सदस्य सभामा आमन्त्रित हुन्छन् तर मताधिकार हुँदैन।",
+        note: "साधारण सभाको निर्णयबाट प्रदान हुने",
+        body: "सामाजिक क्षेत्रमा विशिष्ट योगदान पुर्‍याएका व्यक्तिलाई प्रदान गरिन्छ। मानार्थ सदस्य सभामा आमन्त्रित हुन्छन्, र मताधिकार हुँदैन।",
         clause: "१०(घ)",
       },
     ],
