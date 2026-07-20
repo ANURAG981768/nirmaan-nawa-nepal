@@ -457,7 +457,7 @@ const en = {
   contact: {
     metaTitle: "Contact — Nirmaan Nawa Nepal",
     metaDesc:
-      "Reach Nirmaan Nawa Nepal in Kageshwari Manohara–6, Kathmandu. Phone, email and postal address.",
+      "Reach Nirmaan Nawa Nepal in Kathmandu. Phone, email, social media, and a message form for questions, membership and partnership.",
     tag: "Contact",
     title: "Get in touch.",
     lead: "For membership, partnership, document requests, or press. If you are reporting a problem, the complaints form gives you a tracking code — use that instead.",
@@ -941,7 +941,7 @@ const ne: Copy = {
   contact: {
     metaTitle: "सम्पर्क — निर्माण नव नेपाल",
     metaDesc:
-      "कागेश्वरी मनोहरा–६, काठमाडौंमा रहेको निर्माण नव नेपालसँग सम्पर्क। फोन, इमेल र ठेगाना।",
+      "काठमाडौंमा रहेको निर्माण नव नेपालसँग सम्पर्क। फोन, इमेल, सामाजिक सञ्जाल, र प्रश्न, सदस्यता तथा साझेदारीका लागि सन्देश फारम।",
     tag: "सम्पर्क",
     title: "सम्पर्क गर्नुहोस्।",
     lead: "सदस्यता, साझेदारी, कागजात माग वा सञ्चारमाध्यमका लागि। समस्या सुनाउन खोज्नुभएको हो भने गुनासो फारमले सन्दर्भ नम्बर दिन्छ — त्यही प्रयोग गर्नुहोस्।",
