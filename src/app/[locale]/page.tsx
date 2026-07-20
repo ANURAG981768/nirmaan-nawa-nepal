@@ -3,7 +3,8 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { isLocale, ORG, type Locale } from "@/lib/org";
 import { getCopy } from "@/lib/content";
-import { Band, BandHead, Hang, Ticks } from "@/components/Band";
+import { Band, BandHead, Hang } from "@/components/Band";
+import ComplaintForm from "@/components/ComplaintForm";
 
 export default async function HomePage({
   params,
@@ -32,7 +33,7 @@ export default async function HomePage({
               {t.home.lead}
             </p>
             <div className="hero-actions enter d4">
-              <Link className="btn btn-primary" href={`/${l}/complaints`}>
+              <Link className="btn btn-primary" href="#report">
                 {t.home.ctaComplaint}
               </Link>
               <Link className="btn btn-ghost" href={`/${l}/join`}>
@@ -121,29 +122,45 @@ export default async function HomePage({
         </div>
       </Band>
 
-      {/* Complaints — the reason most people will arrive here. */}
-      <Band>
+      {/* Accountability — the reason most people will arrive here.
+          The form is embedded so anyone can file from the front page. */}
+      <Band id="report">
+        <BandHead
+          tag={t.home.complaintTag}
+          title={t.home.complaintTitle}
+          lead={t.home.complaintBody}
+          aside={
+            <Link
+              className="btn btn-ghost"
+              href={`/${l}/complaints#track`}
+            >
+              {t.home.complaintTrack}
+            </Link>
+          }
+        />
         <div className="split">
-          <div>
-            <p className="tag">{t.home.complaintTag}</p>
-            <h2 className="d-lg" style={{ marginTop: "0.75rem" }}>
-              {t.home.complaintTitle}
-            </h2>
+          <div className="stack">
+            <ul className="list-plain stack-sm">
+              {t.complaints.noticePoints.slice(0, 3).map((point) => (
+                <li
+                  key={point.slice(0, 24)}
+                  style={{
+                    borderTop: "1px solid var(--line-strong)",
+                    paddingTop: "0.85rem",
+                    fontSize: "0.9375rem",
+                    lineHeight: 1.6,
+                    color: "var(--slate)",
+                  }}
+                >
+                  {point}
+                </li>
+              ))}
+            </ul>
+            <Link className="text-clay" href={`/${l}/complaints`} style={{ fontWeight: 600 }}>
+              {t.home.complaintFull} →
+            </Link>
           </div>
-          <div>
-            <p className="lead">{t.home.complaintBody}</p>
-            <div className="hero-actions">
-              <Link className="btn btn-primary" href={`/${l}/complaints`}>
-                {t.home.complaintCta}
-              </Link>
-              <Link
-                className="btn btn-ghost"
-                href={`/${l}/complaints#track`}
-              >
-                {t.home.complaintTrack}
-              </Link>
-            </div>
-          </div>
+          <ComplaintForm locale={l} />
         </div>
       </Band>
 

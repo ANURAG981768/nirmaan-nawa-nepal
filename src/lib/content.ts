@@ -98,6 +98,7 @@ const en = {
       "Complaints can be filed anonymously. Every complaint gets a reference code you can use to check its status later, so nothing disappears into an inbox.",
     complaintCta: "File a complaint",
     complaintTrack: "Check a complaint",
+    complaintFull: "Read the full guidance and your rights",
 
     workTag: "Our work",
     workTitle: "What the organisation does.",
@@ -463,6 +464,8 @@ const en = {
     officeTitle: "Where we are",
     emailTag: "Email",
     phoneTag: "Phone",
+    followTitle: "Follow",
+    followBody: "Updates, work and notices on Facebook, Instagram and TikTok.",
     hoursNote:
       "We are a volunteer-run organisation. Email usually gets a faster reply than a phone call.",
     complaintPrompt: "Reporting a problem?",
@@ -475,6 +478,7 @@ const en = {
 
   footer: {
     tagline: "Build New Nepal through civic action.",
+    followTitle: "Follow",
     exploreTitle: "Site",
     contactTitle: "Contact",
     registeredTitle: "Registered",
@@ -578,6 +582,7 @@ const ne: Copy = {
       "गुनासो नामै नदिई पनि दर्ता गर्न सकिन्छ। हरेक गुनासोलाई एउटा सन्दर्भ नम्बर दिइन्छ, जसबाट पछि अवस्था हेर्न सकिन्छ — कुनै गुनासो इमेलमै हराउँदैन।",
     complaintCta: "गुनासो दर्ता गर्नुहोस्",
     complaintTrack: "गुनासोको अवस्था हेर्नुहोस्",
+    complaintFull: "पूर्ण मार्गदर्शन र तपाईंका अधिकार पढ्नुहोस्",
 
     workTag: "हाम्रो काम",
     workTitle: "संस्थाले के गर्छ।",
@@ -942,6 +947,8 @@ const ne: Copy = {
     officeTitle: "हामी कहाँ छौं",
     emailTag: "इमेल",
     phoneTag: "फोन",
+    followTitle: "फलो गर्नुहोस्",
+    followBody: "फेसबुक, इन्स्टाग्राम र टिकटकमा हाम्रा काम, अपडेट र सूचना।",
     hoursNote:
       "हामी स्वयंसेवामा आधारित संस्था हौं। फोनभन्दा इमेलमा प्रायः छिटो जवाफ पाइन्छ।",
     complaintPrompt: "समस्या सुनाउन खोज्नुभएको हो?",
@@ -954,6 +961,7 @@ const ne: Copy = {
 
   footer: {
     tagline: "नागरिक कर्मबाट नयाँ नेपाल।",
+    followTitle: "फलो गर्नुहोस्",
     exploreTitle: "साइट",
     contactTitle: "सम्पर्क",
     registeredTitle: "दर्ता",

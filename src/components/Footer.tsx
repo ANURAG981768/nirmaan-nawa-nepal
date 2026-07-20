@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { NAV, ORG, type Locale } from "@/lib/org";
 import { getCopy } from "@/lib/content";
+import Social from "./Social";
 
 export default function Footer({ locale }: { locale: Locale }) {
   const t = getCopy(locale);
@@ -17,6 +18,10 @@ export default function Footer({ locale }: { locale: Locale }) {
             <p style={{ margin: 0, maxWidth: "34ch", lineHeight: 1.6 }}>
               {t.footer.tagline}
             </p>
+            <div style={{ marginTop: "1.5rem" }}>
+              <h4>{t.footer.followTitle}</h4>
+              <Social size={19} />
+            </div>
           </div>
 
           <div>

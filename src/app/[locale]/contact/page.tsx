@@ -5,6 +5,7 @@ import { isLocale, ORG, type Locale } from "@/lib/org";
 import { getCopy } from "@/lib/content";
 import { Band } from "@/components/Band";
 import JoinForm from "@/components/JoinForm";
+import Social from "@/components/Social";
 
 export async function generateMetadata({
   params,
@@ -45,7 +46,7 @@ export default async function ContactPage({
       </Band>
 
       <Band>
-        <div className="grid-3">
+        <div className="grid-4">
           <article className="hang">
             <div className="hang-head">
               <h3>{t.contact.officeTitle}</h3>
@@ -87,6 +88,14 @@ export default async function ContactPage({
                 </a>
               </p>
             ))}
+          </article>
+
+          <article className="hang">
+            <div className="hang-head">
+              <h3>{t.contact.followTitle}</h3>
+            </div>
+            <p>{t.contact.followBody}</p>
+            <Social size={19} />
           </article>
         </div>
       </Band>

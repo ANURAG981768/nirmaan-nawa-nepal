@@ -75,3 +75,28 @@ export const NAV = [
   { key: "join", href: "/join" },
   { key: "contact", href: "/contact" },
 ] as const;
+
+/**
+ * Official social accounts. Tracking parameters (?mibextid, ?igsh) have
+ * been stripped — they identify the person who shared the link and have no
+ * business in a link we publish.
+ */
+export const SOCIAL = [
+  {
+    key: "facebook",
+    label: "Facebook",
+    href: "https://www.facebook.com/share/1BZPS5dUGR/",
+  },
+  {
+    key: "instagram",
+    label: "Instagram",
+    href: "https://www.instagram.com/nirman_nawa_np",
+  },
+  {
+    key: "tiktok",
+    label: "TikTok",
+    href: "https://vt.tiktok.com/ZSXXAhPFD/",
+  },
+] as const;
+
+export type SocialKey = (typeof SOCIAL)[number]["key"];

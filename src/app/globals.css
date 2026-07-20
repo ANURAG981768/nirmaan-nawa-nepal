@@ -1059,6 +1059,12 @@ a.card:hover {
   margin: 0;
 }
 
+/* When a #hash lands on a section, leave room for the sticky masthead so
+   the heading is not hidden underneath it. */
+:target {
+  scroll-margin-top: 5.5rem;
+}
+
 .skip {
   position: absolute;
   left: -9999px;
@@ -1085,6 +1091,50 @@ a.card:hover {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+/* ---------- social ---------- */
+
+.social {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: var(--rule-w) solid var(--line-strong);
+  border-radius: 2px;
+  color: var(--ink);
+  text-decoration: none;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.social a:hover {
+  background: var(--clay);
+  border-color: var(--clay);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* On the dark footer the outlines and hover invert to stay legible. */
+.footer .social a {
+  border-color: #2c3b58;
+  color: #cfd8ea;
+}
+
+.footer .social a:hover {
+  background: var(--clay);
+  border-color: var(--clay);
+  color: #fff;
 }
 
 /* ---------- phone ----------
