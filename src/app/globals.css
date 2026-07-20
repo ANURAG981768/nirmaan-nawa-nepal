@@ -7,22 +7,21 @@
    ============================================================ */
 
 :root {
-  --ink: #07111f;
-  --ink-soft: #102946;
-  --ink-deep: #020711;
-  --clay: #ff5d3d;
-  --clay-soft: #ff9a77;
-  --paper: #f7fbff;
-  --paper-warm: #eaf3f7;
-  --slate: #526276;
-  --line: rgba(13, 42, 71, 0.16);
-  --line-strong: rgba(13, 42, 71, 0.34);
-  --signal: #00c2ff;
-  --signal-soft: #82e8ff;
-  --leaf: #19b77a;
-  --violet: #725cff;
-  --glass: rgba(255, 255, 255, 0.72);
-  --glass-dark: rgba(6, 16, 31, 0.72);
+  --ink: #101f3d;
+  --ink-soft: #1c3057;
+  --ink-deep: #081326;
+  --clay: #bd5334;
+  --clay-soft: #d97a58;
+  --paper: #fbfaf7;
+  --paper-warm: #f4f1ea;
+  --slate: #59617a;
+  --line: #d9d4c8;
+  --line-strong: #b9b2a3;
+  --saffron: #d8a335;
+  --leaf: #24765a;
+  --sky: #2f80a8;
+  --glass: rgba(255, 255, 255, 0.82);
+  --glass-dark: rgba(8, 19, 38, 0.84);
 
   /* Names are deliberately not --font-sans/serif/mono: Tailwind v4 already
      defines those as theme variables on :root and would shadow ours. */
@@ -45,11 +44,13 @@ html {
 
 body {
   margin: 0;
+  /* yif-grade civic editorial polish */
   background:
-    linear-gradient(90deg, rgba(0, 194, 255, 0.055) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(255, 93, 61, 0.05) 0, transparent 21rem),
-    linear-gradient(180deg, #f7fbff 0, #eef5f8 48%, #f9fbf7 100%);
-  background-size: 5.5rem 5.5rem, auto, auto;
+    linear-gradient(90deg, rgba(16, 31, 61, 0.045) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(16, 31, 61, 0.035) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(189, 83, 52, 0.08) 0, transparent 18rem),
+    linear-gradient(180deg, #fbfaf7 0, #f4f1ea 52%, #fbfaf7 100%);
+  background-size: 5.5rem 5.5rem, 5.5rem 5.5rem, auto, auto;
   color: var(--ink);
   font-family: var(--body);
   font-size: 1rem;
@@ -187,8 +188,8 @@ body {
   padding-block: clamp(3.5rem, 7vw, 6.5rem);
   position: relative;
   background:
-    linear-gradient(90deg, rgba(0, 194, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0));
+    linear-gradient(90deg, rgba(16, 31, 61, 0.03) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.54), rgba(255, 255, 255, 0));
   background-size: 5.5rem 5.5rem, auto;
 }
 
@@ -198,26 +199,26 @@ body {
 
 .band-ink {
   background:
-    linear-gradient(90deg, rgba(0, 194, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
     linear-gradient(0deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(135deg, #020711, #071b31 54%, #131323);
+    linear-gradient(135deg, #081326, #101f3d 58%, #182f57);
   background-size: 4.5rem 4.5rem, 4.5rem 4.5rem, auto;
   color: var(--paper);
-  border-top-color: rgba(0, 194, 255, 0.24);
-  box-shadow: 0 -1px 0 rgba(0, 194, 255, 0.12) inset;
+  border-top-color: rgba(216, 163, 53, 0.42);
+  box-shadow: 0 -1px 0 rgba(216, 163, 53, 0.24) inset;
 }
 
 .band-ink .lead,
 .band-ink .prose-body {
-  color: #c1d4e5;
+  color: #d7dddf;
 }
 
 .band-ink .tag {
-  color: var(--signal-soft);
+  color: #f0c05b;
 }
 
 .band-ink .clause {
-  color: #46587e;
+  color: #8490a9;
 }
 
 /* Header row directly under the rule. */
@@ -254,7 +255,7 @@ body {
 
 .ticks i {
   width: var(--rule-w);
-  background: rgba(0, 194, 255, 0.32);
+  background: rgba(189, 83, 52, 0.46);
   flex: none;
   height: 100%;
   display: block;
@@ -268,7 +269,7 @@ body {
 }
 
 .band-ink .ticks i {
-  background: rgba(130, 232, 255, 0.34);
+  background: rgba(216, 163, 53, 0.5);
 }
 
 /* ---------- masthead ---------- */
@@ -277,10 +278,10 @@ body {
   position: sticky;
   top: 0;
   z-index: 60;
-  background: rgba(247, 251, 255, 0.78);
-  border-bottom: var(--rule-w) solid rgba(0, 194, 255, 0.18);
-  box-shadow: 0 18px 55px rgba(3, 8, 18, 0.08);
-  backdrop-filter: blur(18px) saturate(130%);
+  background: rgba(251, 250, 247, 0.84);
+  border-bottom: var(--rule-w) solid rgba(185, 178, 163, 0.78);
+  box-shadow: 0 18px 48px rgba(16, 31, 61, 0.08);
+  backdrop-filter: blur(18px) saturate(118%);
   transform: translateZ(0);
 }
 
@@ -306,7 +307,7 @@ body {
   height: 42px;
   object-fit: contain;
   flex: none;
-  filter: drop-shadow(0 0 14px rgba(0, 194, 255, 0.22));
+  filter: drop-shadow(0 10px 16px rgba(16, 31, 61, 0.12));
 }
 
 .brand-name {
@@ -327,7 +328,7 @@ body {
   font-size: 0.5625rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #60758c;
+  color: #6d6f77;
 }
 
 .nav {
@@ -343,14 +344,13 @@ body {
   font-weight: 500;
   padding: 0.45rem 0.15rem;
   border-bottom: 2px solid transparent;
-  transition: color 0.18s ease, border-color 0.18s ease, text-shadow 0.18s ease;
+  transition: color 0.18s ease, border-color 0.18s ease;
 }
 
 .nav a:hover,
 .nav a[data-active="true"] {
   color: var(--ink);
-  border-bottom-color: var(--signal);
-  text-shadow: 0 0 18px rgba(0, 194, 255, 0.34);
+  border-bottom-color: var(--clay);
 }
 
 .nav-desktop {
@@ -376,11 +376,11 @@ body {
 .lang {
   display: inline-flex;
   align-items: stretch;
-  border: var(--rule-w) solid rgba(0, 194, 255, 0.28);
-  border-radius: 999px;
+  border: var(--rule-w) solid var(--line);
+  border-radius: 8px;
   overflow: hidden;
   flex: none;
-  background: rgba(255, 255, 255, 0.48);
+  background: rgba(255, 255, 255, 0.64);
 }
 
 .lang a {
@@ -403,9 +403,9 @@ body {
 
 .nav-toggle {
   appearance: none;
-  background: rgba(255, 255, 255, 0.48);
-  border: var(--rule-w) solid rgba(0, 194, 255, 0.28);
-  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.64);
+  border: var(--rule-w) solid var(--line);
+  border-radius: 8px;
   padding: 0.5rem 0.7rem;
   font-family: var(--mono);
   font-size: 0.6875rem;
@@ -438,7 +438,7 @@ body {
   font-size: 0.9375rem;
   font-weight: 600;
   padding: 0.8rem 1.35rem;
-  border-radius: 999px;
+  border-radius: 8px;
   text-decoration: none;
   border: var(--rule-w) solid transparent;
   cursor: pointer;
@@ -448,32 +448,31 @@ body {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--clay), #ff7b44 48%, var(--signal));
+  background: linear-gradient(135deg, var(--clay), #c96844 54%, var(--saffron));
   color: #fff;
   border-color: transparent;
-  box-shadow: 0 14px 34px rgba(255, 93, 61, 0.28),
+  box-shadow: 0 14px 32px rgba(189, 83, 52, 0.25),
     0 0 0 1px rgba(255, 255, 255, 0.22) inset;
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, #ff6a49, #ff9c58 48%, #20d7ff);
+  background: linear-gradient(135deg, #a94429, var(--clay) 54%, #d89b29);
   border-color: transparent;
   transform: translateY(-2px);
-  box-shadow: 0 18px 46px rgba(0, 194, 255, 0.2),
-    0 18px 42px rgba(255, 93, 61, 0.24);
+  box-shadow: 0 18px 42px rgba(189, 83, 52, 0.28);
 }
 
 .btn-ghost {
-  background: rgba(255, 255, 255, 0.52);
+  background: rgba(255, 255, 255, 0.66);
   color: var(--ink);
-  border-color: rgba(13, 42, 71, 0.22);
+  border-color: var(--line);
 }
 
 .btn-ghost:hover {
-  border-color: var(--signal);
+  border-color: var(--clay);
   color: var(--ink);
   transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(0, 194, 255, 0.12);
+  box-shadow: 0 12px 28px rgba(16, 31, 61, 0.08);
 }
 
 .band-ink .btn-ghost {
@@ -512,13 +511,14 @@ summary:focus-visible {
   min-height: calc(100vh - 4.5rem);
   display: grid;
   align-items: center;
-  color: #f8fbff;
+  color: var(--ink);
   background:
-    linear-gradient(90deg, rgba(0, 194, 255, 0.12) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
-    linear-gradient(135deg, #020711 0%, #071b31 48%, #111421 100%);
-  background-size: 4rem 4rem, 4rem 4rem, auto;
-  border-bottom: 1px solid rgba(0, 194, 255, 0.22);
+    linear-gradient(90deg, rgba(16, 31, 61, 0.055) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(16, 31, 61, 0.035) 1px, transparent 1px),
+    linear-gradient(125deg, rgba(216, 163, 53, 0.14), transparent 34% 62%, rgba(189, 83, 52, 0.1)),
+    linear-gradient(180deg, #fbfaf7 0%, #f4f1ea 70%, #101f3d 70%, #081326 100%);
+  background-size: 4rem 4rem, 4rem 4rem, auto, auto;
+  border-bottom: 1px solid rgba(16, 31, 61, 0.22);
 }
 
 .hero::before {
@@ -527,9 +527,9 @@ summary:focus-visible {
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(120deg, transparent 0 39%, rgba(0, 194, 255, 0.16) 40%, transparent 42% 58%, rgba(255, 93, 61, 0.13) 59%, transparent 61%),
-    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 7px);
-  opacity: 0.72;
+    linear-gradient(120deg, transparent 0 39%, rgba(189, 83, 52, 0.14) 40%, transparent 42% 58%, rgba(16, 31, 61, 0.1) 59%, transparent 61%),
+    repeating-linear-gradient(0deg, rgba(16, 31, 61, 0.035) 0 1px, transparent 1px 7px);
+  opacity: 0.78;
 }
 
 .hero::after {
@@ -537,8 +537,8 @@ summary:focus-visible {
   position: absolute;
   inset: auto 0 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--signal), var(--clay), transparent);
-  box-shadow: 0 0 34px rgba(0, 194, 255, 0.7);
+  background: linear-gradient(90deg, transparent, var(--saffron), var(--clay), transparent);
+  box-shadow: 0 0 26px rgba(189, 83, 52, 0.42);
 }
 
 /* Topographic backdrop — faint drifting contour lines. */
@@ -548,8 +548,8 @@ summary:focus-visible {
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
-  color: var(--signal-soft);
-  opacity: 0.22;
+  color: var(--ink-soft);
+  opacity: 0.11;
   -webkit-mask-image: linear-gradient(
     to bottom,
     transparent,
@@ -613,16 +613,16 @@ summary:focus-visible {
 }
 
 .hero .tag {
-  color: var(--clay-soft);
+  color: var(--clay);
 }
 
 .hero .d-xl {
-  color: #ffffff;
-  text-shadow: 0 0 34px rgba(0, 194, 255, 0.18);
+  color: var(--ink);
+  text-wrap: balance;
 }
 
 .hero .lead {
-  color: #c7d7e7;
+  color: var(--ink-soft);
 }
 
 .hero-emblem {
@@ -632,10 +632,9 @@ summary:focus-visible {
 .hero-sub {
   font-family: var(--display);
   font-size: clamp(1.35rem, 2.6vw, 2rem);
-  color: var(--signal-soft);
+  color: var(--clay);
   line-height: 1.2;
   margin: 0.4rem 0 0;
-  text-shadow: 0 0 28px rgba(0, 194, 255, 0.25);
 }
 
 .hero-actions {
@@ -661,15 +660,15 @@ summary:focus-visible {
   content: "";
   position: absolute;
   inset: 0;
-  border: 1px solid rgba(0, 194, 255, 0.36);
-  border-radius: 28px;
+  border: 1px solid rgba(16, 31, 61, 0.28);
+  border-radius: 8px;
   transform: rotate(-5deg);
   z-index: -1;
 }
 
 .hero-emblem::after {
   inset: 1.1rem;
-  border-color: rgba(255, 93, 61, 0.42);
+  border-color: rgba(189, 83, 52, 0.45);
   transform: rotate(6deg);
 }
 
@@ -678,14 +677,13 @@ summary:focus-visible {
   height: auto;
   display: block;
   border-radius: 50%;
-  filter: drop-shadow(0 26px 55px rgba(0, 0, 0, 0.45))
-    drop-shadow(0 0 32px rgba(0, 194, 255, 0.28));
+  filter: drop-shadow(0 28px 42px rgba(16, 31, 61, 0.28));
 }
 
 /* Proof strip — the credentials as one clean line, hanging from a rule. */
 .proof {
   margin-top: clamp(2.5rem, 5vw, 3.75rem);
-  border-top: var(--rule-w) solid rgba(0, 194, 255, 0.28);
+  border-top: var(--rule-w) solid rgba(244, 241, 234, 0.24);
 }
 
 .proof-row {
@@ -712,14 +710,16 @@ summary:focus-visible {
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
-  padding-block: 0.75rem;
-  border-top: var(--rule-w) solid rgba(0, 194, 255, 0.25);
+  padding: 0.95rem 1rem;
+  border-top: var(--rule-w) solid rgba(244, 241, 234, 0.22);
+  background: rgba(251, 250, 247, 0.08);
+  border-radius: 8px;
 }
 
 @media (min-width: 640px) {
   .proof-item {
     border-top: 0;
-    padding-block: 0;
+    padding: 0.95rem 1rem;
   }
 }
 
@@ -728,7 +728,7 @@ summary:focus-visible {
   font-size: 0.625rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(185, 232, 255, 0.76);
+  color: rgba(244, 241, 234, 0.72);
 }
 
 :lang(ne) .proof-item span {
@@ -744,8 +744,7 @@ summary:focus-visible {
   font-weight: 400;
   font-size: 1.15rem;
   line-height: 1.25;
-  color: #ffffff;
-  text-shadow: 0 0 20px rgba(0, 194, 255, 0.18);
+  color: #fffaf0;
 }
 
 .seal-facts {
@@ -834,14 +833,14 @@ summary:focus-visible {
 /* Objective card — the four commitments. A clay rule on top, a drawn
    icon, then the copy. This is the homepage's main graphic device. */
 .objective {
-  border: 1px solid rgba(13, 42, 71, 0.13);
-  border-top: 2px solid var(--signal);
-  border-radius: 22px;
+  border: 1px solid rgba(16, 31, 61, 0.14);
+  border-top: 2px solid var(--clay);
+  border-radius: 8px;
   padding: clamp(1.15rem, 2.4vw, 1.55rem);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.58)),
-    linear-gradient(135deg, rgba(0, 194, 255, 0.11), rgba(255, 93, 61, 0.07));
-  box-shadow: 0 18px 45px rgba(13, 42, 71, 0.08);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.66)),
+    linear-gradient(135deg, rgba(216, 163, 53, 0.11), rgba(36, 118, 90, 0.06));
+  box-shadow: 0 18px 40px rgba(16, 31, 61, 0.08);
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
@@ -849,15 +848,15 @@ summary:focus-visible {
 }
 
 .objective-icon {
-  color: var(--signal);
+  color: var(--ink);
   display: inline-flex;
   width: 52px;
   height: 52px;
   align-items: center;
   justify-content: center;
-  border-radius: 16px;
-  background: rgba(0, 194, 255, 0.1);
-  box-shadow: 0 0 0 1px rgba(0, 194, 255, 0.18) inset;
+  border-radius: 8px;
+  background: rgba(216, 163, 53, 0.18);
+  box-shadow: 0 0 0 1px rgba(16, 31, 61, 0.12) inset;
 }
 
 .objective h3 {
@@ -880,31 +879,31 @@ summary:focus-visible {
 }
 
 .band-ink .objective {
-  border-color: rgba(130, 232, 255, 0.2);
-  border-top-color: var(--signal-soft);
+  border-color: rgba(244, 241, 234, 0.18);
+  border-top-color: var(--saffron);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.035)),
-    linear-gradient(135deg, rgba(0, 194, 255, 0.12), rgba(255, 93, 61, 0.06));
+    linear-gradient(180deg, rgba(255, 255, 255, 0.085), rgba(255, 255, 255, 0.04)),
+    linear-gradient(135deg, rgba(216, 163, 53, 0.12), rgba(189, 83, 52, 0.08));
 }
 
 .band-ink .objective-icon {
-  color: var(--signal-soft);
-  background: rgba(0, 194, 255, 0.12);
-  box-shadow: 0 0 0 1px rgba(130, 232, 255, 0.18) inset;
+  color: var(--paper);
+  background: rgba(216, 163, 53, 0.16);
+  box-shadow: 0 0 0 1px rgba(244, 241, 234, 0.14) inset;
 }
 
 .band-ink .objective p {
-  color: #a9b4cc;
+  color: #d7dddf;
 }
 
 /* An item hangs from its own short rule. */
 .hang {
-  border: 1px solid rgba(13, 42, 71, 0.14);
-  border-top: 2px solid rgba(255, 93, 61, 0.75);
-  border-radius: 20px;
+  border: 1px solid rgba(16, 31, 61, 0.14);
+  border-top: 2px solid rgba(189, 83, 52, 0.78);
+  border-radius: 8px;
   padding: clamp(1.15rem, 2.2vw, 1.45rem);
-  background: rgba(255, 255, 255, 0.68);
-  box-shadow: 0 16px 40px rgba(13, 42, 71, 0.06);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 16px 34px rgba(16, 31, 61, 0.06);
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
@@ -937,53 +936,53 @@ summary:focus-visible {
 }
 
 .band-ink .hang {
-  border-color: rgba(130, 232, 255, 0.16);
-  border-top-color: rgba(130, 232, 255, 0.64);
+  border-color: rgba(244, 241, 234, 0.16);
+  border-top-color: rgba(216, 163, 53, 0.76);
   background: rgba(255, 255, 255, 0.045);
 }
 
 .band-ink .hang p {
-  color: #a9b4cc;
+  color: #d7dddf;
 }
 
 .band-ink .card,
 .band-ink .form-wrap,
 .band-ink .receipt {
   color: var(--paper);
-  border-color: rgba(130, 232, 255, 0.18);
+  border-color: rgba(244, 241, 234, 0.18);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04)),
-    linear-gradient(135deg, rgba(0, 194, 255, 0.09), rgba(255, 93, 61, 0.06));
+    linear-gradient(135deg, rgba(216, 163, 53, 0.1), rgba(189, 83, 52, 0.06));
 }
 
 .band-ink .card p,
 .band-ink .field-hint,
 .band-ink .choice-body small {
-  color: #a9b4cc;
+  color: #d7dddf;
 }
 
 /* ---------- cards ---------- */
 
 .card {
-  border: var(--rule-w) solid rgba(13, 42, 71, 0.14);
+  border: var(--rule-w) solid rgba(16, 31, 61, 0.14);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.68)),
-    linear-gradient(135deg, rgba(0, 194, 255, 0.1), rgba(114, 92, 255, 0.08));
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7)),
+    linear-gradient(135deg, rgba(216, 163, 53, 0.1), rgba(36, 118, 90, 0.06));
   padding: clamp(1.25rem, 2.4vw, 1.75rem);
-  border-radius: 20px;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   text-decoration: none;
   color: inherit;
-  box-shadow: 0 18px 48px rgba(13, 42, 71, 0.08);
+  box-shadow: 0 18px 40px rgba(16, 31, 61, 0.08);
   transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
 }
 
 a.card:hover {
-  border-color: rgba(0, 194, 255, 0.7);
+  border-color: rgba(189, 83, 52, 0.62);
   transform: translateY(-2px);
-  box-shadow: 0 22px 54px rgba(0, 194, 255, 0.12);
+  box-shadow: 0 22px 48px rgba(16, 31, 61, 0.12);
 }
 
 .card h3 {
@@ -1015,12 +1014,12 @@ a.card:hover {
 .form-wrap {
   max-width: 40rem;
   padding: clamp(1.1rem, 2.4vw, 1.7rem);
-  border: 1px solid rgba(13, 42, 71, 0.14);
-  border-radius: 22px;
+  border: 1px solid rgba(16, 31, 61, 0.14);
+  border-radius: 8px;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.66)),
-    linear-gradient(135deg, rgba(0, 194, 255, 0.09), rgba(255, 93, 61, 0.06));
-  box-shadow: 0 20px 56px rgba(13, 42, 71, 0.1);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.72)),
+    linear-gradient(135deg, rgba(216, 163, 53, 0.1), rgba(189, 83, 52, 0.06));
+  box-shadow: 0 20px 48px rgba(16, 31, 61, 0.09);
 }
 
 .field {
@@ -1053,8 +1052,8 @@ a.card:hover {
   font-size: 1rem;
   color: var(--ink);
   background: rgba(255, 255, 255, 0.86);
-  border: var(--rule-w) solid rgba(13, 42, 71, 0.22);
-  border-radius: 14px;
+  border: var(--rule-w) solid rgba(16, 31, 61, 0.22);
+  border-radius: 8px;
   padding: 0.7rem 0.85rem;
   line-height: 1.5;
 }
@@ -1078,8 +1077,8 @@ a.card:hover {
   display: flex;
   gap: 0.6rem;
   align-items: flex-start;
-  border: var(--rule-w) solid rgba(13, 42, 71, 0.18);
-  border-radius: 16px;
+  border: var(--rule-w) solid rgba(16, 31, 61, 0.18);
+  border-radius: 8px;
   padding: 0.85rem 1rem;
   cursor: pointer;
   background: rgba(255, 255, 255, 0.76);
@@ -1114,9 +1113,9 @@ a.card:hover {
 }
 
 .choice:has(input:checked) {
-  border-color: var(--signal);
-  background: rgba(229, 249, 255, 0.78);
-  box-shadow: 0 0 0 1px rgba(0, 194, 255, 0.16) inset;
+  border-color: var(--clay);
+  background: rgba(244, 241, 234, 0.88);
+  box-shadow: 0 0 0 1px rgba(189, 83, 52, 0.15) inset;
 }
 
 .form-note {
@@ -1158,14 +1157,14 @@ a.card:hover {
 /* ---------- receipt (complaint reference) ---------- */
 
 .receipt {
-  border: var(--rule-w) solid rgba(0, 194, 255, 0.38);
+  border: var(--rule-w) solid rgba(189, 83, 52, 0.34);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.7)),
-    linear-gradient(135deg, rgba(0, 194, 255, 0.11), rgba(255, 93, 61, 0.08));
+    linear-gradient(135deg, rgba(216, 163, 53, 0.12), rgba(189, 83, 52, 0.08));
   padding: clamp(1.5rem, 3vw, 2.25rem);
   max-width: 36rem;
-  border-radius: 22px;
-  box-shadow: 0 22px 58px rgba(13, 42, 71, 0.12);
+  border-radius: 8px;
+  box-shadow: 0 22px 50px rgba(16, 31, 61, 0.11);
 }
 
 .receipt-code {
@@ -1186,16 +1185,16 @@ a.card:hover {
 
 .footer {
   background:
-    linear-gradient(90deg, rgba(0, 194, 255, 0.08) 1px, transparent 1px),
-    linear-gradient(180deg, #020711, #07111f);
+    linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(180deg, #081326, #101f3d);
   background-size: 4rem 4rem, auto;
-  color: #9dabc6;
-  border-top: 1px solid rgba(0, 194, 255, 0.32);
+  color: #bfc7d1;
+  border-top: 1px solid rgba(216, 163, 53, 0.34);
   padding-block: clamp(3rem, 6vw, 4.5rem) 2rem;
 }
 
 .footer a {
-  color: #cfd8ea;
+  color: #eef1ef;
   text-decoration: none;
 }
 
@@ -1210,7 +1209,7 @@ a.card:hover {
   font-size: 0.625rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #6d7c99;
+  color: #929aab;
   margin: 0 0 1rem;
   font-weight: 500;
 }
@@ -1243,7 +1242,7 @@ a.card:hover {
 }
 
 .footer-base {
-  border-top: var(--rule-w) solid #24334f;
+  border-top: var(--rule-w) solid rgba(244, 241, 234, 0.16);
   padding-top: 1.5rem;
   display: flex;
   flex-wrap: wrap;
@@ -1252,7 +1251,7 @@ a.card:hover {
   font-family: var(--mono);
   font-size: 0.6875rem;
   letter-spacing: 0.04em;
-  color: #6d7c99;
+  color: #929aab;
 }
 
 /* ---------- page-load: rules draw, content hangs ---------- */
@@ -1475,8 +1474,8 @@ a.card:hover {
 
 /* On the dark footer the outlines and hover invert to stay legible. */
 .footer .social a {
-  border-color: #2c3b58;
-  color: #cfd8ea;
+  border-color: rgba(244, 241, 234, 0.2);
+  color: #eef1ef;
 }
 
 .footer .social a:hover {
