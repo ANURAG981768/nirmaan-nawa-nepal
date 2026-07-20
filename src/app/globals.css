@@ -478,20 +478,23 @@ summary:focus-visible {
   position: relative;
 }
 
+/* Text and emblem sit as one centred pair — no dead space on either side,
+   balanced whatever the screen width. Wraps to a stack on narrow screens. */
 .hero-grid {
-  display: grid;
-  gap: clamp(2rem, 5vw, 4.5rem);
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-}
-
-@media (min-width: 1000px) {
-  .hero-grid {
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  }
+  justify-content: center;
+  gap: clamp(2rem, 5vw, 4.5rem);
 }
 
 .hero-copy {
-  max-width: 40rem;
+  flex: 0 1 40rem;
+  min-width: 0;
+}
+
+.hero-emblem {
+  flex: 0 0 auto;
 }
 
 .hero-sub {
@@ -518,7 +521,7 @@ summary:focus-visible {
 }
 
 .hero-emblem img {
-  width: min(440px, 84vw);
+  width: clamp(280px, 34vw, 380px);
   height: auto;
   display: block;
 }

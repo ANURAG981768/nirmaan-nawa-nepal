@@ -81,15 +81,6 @@ export default async function AboutPage({
         </div>
       </Band>
 
-      {/* Working Committee — deliberately empty until names are verified. */}
-      <Band>
-        <BandHead tag={t.about.teamTag} title={t.about.teamTitle} />
-        <div className="card card-empty" style={{ maxWidth: "52rem" }}>
-          <p className="tag tag-quiet">{t.common.comingSoon}</p>
-          <p>{t.about.teamPending}</p>
-        </div>
-      </Band>
-
       {/* Money — where funds come from and the legal limits on them. */}
       <Band ink>
         <BandHead

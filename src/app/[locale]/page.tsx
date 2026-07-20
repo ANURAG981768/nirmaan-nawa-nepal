@@ -47,8 +47,10 @@ export default async function HomePage({
             <Image
               src="/nirmaan-logo.png"
               alt={ne ? ORG.nameNe : ORG.nameEn}
-              width={480}
-              height={480}
+              width={718}
+              height={720}
+              sizes="(max-width: 999px) 74vw, 380px"
+              quality={90}
               priority
             />
           </div>
