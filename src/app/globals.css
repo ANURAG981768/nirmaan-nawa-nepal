@@ -18,9 +18,11 @@
   --line: #d9d4c8;
   --line-strong: #b9b2a3;
 
-  --display: var(--font-display), "Tiro Devanagari Hindi", Georgia, serif;
-  --body: var(--font-body), "Mukta", system-ui, sans-serif;
-  --mono: var(--font-mono), "IBM Plex Mono", ui-monospace, monospace;
+  /* Names are deliberately not --font-sans/serif/mono: Tailwind v4 already
+     defines those as theme variables on :root and would shadow ours. */
+  --display: var(--font-tiro), "Tiro Devanagari Hindi", Georgia, serif;
+  --body: var(--font-mukta), "Mukta", system-ui, sans-serif;
+  --mono: var(--font-plex), "IBM Plex Mono", ui-monospace, monospace;
 
   --gutter: clamp(1.25rem, 5vw, 5.5rem);
   --rule-w: 1px;

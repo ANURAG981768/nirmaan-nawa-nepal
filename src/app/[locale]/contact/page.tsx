@@ -1,0 +1,154 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { isLocale, ORG, type Locale } from "@/lib/org";
+import { getCopy } from "@/lib/content";
+import { Band, BandHead } from "@/components/Band";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  if (!isLocale(locale)) return {};
+  const t = getCopy(locale);
+  return {
+    title: t.contact.tag,
+    description: t.contact.metaDesc,
+    alternates: { canonical: `/${locale}/contact` },
+  };
+}
+
+export default async function ContactPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  if (!isLocale(locale)) notFound();
+  const l = locale as Locale;
+  const t = getCopy(l);
+  const ne = l === "ne";
+
+  return (
+    <>
+      <Band tight ticks={false}>
+        <p className="tag">{t.contact.tag}</p>
+        <h1 className="d-lg" style={{ marginTop: "0.75rem" }}>
+          {t.contact.title}
+        </h1>
+        <p className="lead" style={{ marginTop: "1.5rem", maxWidth: "58ch" }}>
+          {t.contact.lead}
+        </p>
+      </Band>
+
+      <Band>
+        <div className="grid-3">
+          <article className="hang">
+            <div className="hang-head">
+              <h3>{t.contact.officeTitle}</h3>
+            </div>
+            <p>{ne ? ORG.addressNe : ORG.addressEn}</p>
+            <p className="mono">
+              {ne
+                ? `कार्यक्षेत्र: ${ORG.workingAreaNe}`
+                : `Working area: ${ORG.workingAreaEn}`}
+            </p>
+          </article>
+
+          <article className="hang">
+            <div className="hang-head">
+              <h3>{t.contact.emailTag}</h3>
+            </div>
+            <p>
+              <a
+                href={`mailto:${ORG.email}`}
+                style={{ color: "var(--clay)", textDecoration: "none" }}
+              >
+                {ORG.email}
+              </a>
+            </p>
+            <p>{t.contact.hoursNote}</p>
+          </article>
+
+          <article className="hang">
+            <div className="hang-head">
+              <h3>{t.contact.phoneTag}</h3>
+            </div>
+            {ORG.phones.map((phone) => (
+              <p key={phone} style={{ margin: 0 }}>
+                <a
+                  href={`tel:${phone.replace(/\s/g, "")}`}
+                  style={{ color: "var(--clay)", textDecoration: "none" }}
+                >
+                  {phone}
+                </a>
+              </p>
+            ))}
+          </article>
+        </div>
+      </Band>
+
+      {/* Route problem reports to the tracked channel, not to email. */}
+      <Band ink tight>
+        <div className="split" style={{ alignItems: "center" }}>
+          <div>
+            <p className="tag">{t.contact.complaintPrompt}</p>
+            <h2 className="d-md" style={{ marginTop: "0.75rem" }}>
+              {t.complaints.title}
+            </h2>
+          </div>
+          <div>
+            <p className="prose-body">{t.contact.complaintPromptBody}</p>
+            <Link
+              className="btn btn-primary"
+              href={`/${l}/complaints`}
+              style={{ marginTop: "1.5rem" }}
+            >
+              {t.contact.complaintPromptCta}
+            </Link>
+          </div>
+        </div>
+      </Band>
+
+      <Band>
+        <BandHead
+          tag={t.contact.registryTag}
+          title={t.contact.registryTitle}
+          lead={t.contact.registryBody}
+        />
+        <div className="grid-4">
+          <div className="hang">
+            <p className="tag tag-quiet">
+              {ne ? "दर्ता नं." : "Registration no."}
+            </p>
+            <p className="d-sm">
+              {ne ? ORG.registrationNoNe : ORG.registrationNo}
+            </p>
+          </div>
+          <div className="hang">
+            <p className="tag tag-quiet">
+              {ne ? "स्थायी लेखा नं." : "PAN"}
+            </p>
+            <p className="d-sm">{ne ? ORG.panNe : ORG.pan}</p>
+          </div>
+          <div className="hang">
+            <p className="tag tag-quiet">{ne ? "दर्ता मिति" : "Registered"}</p>
+            <p className="d-sm">
+              {ne ? ORG.registeredOnNe : ORG.registeredOn}
+            </p>
+          </div>
+          <div className="hang">
+            <p className="tag tag-quiet">
+              {ne ? "दर्ता गर्ने निकाय" : "Registered with"}
+            </p>
+            <p style={{ margin: 0 }}>
+              {ne ? ORG.registeredWithNe : ORG.registeredWith}
+            </p>
+          </div>
+        </div>
+      </Band>
+    </>
+  );
+}
