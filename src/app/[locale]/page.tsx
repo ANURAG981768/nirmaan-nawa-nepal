@@ -107,12 +107,9 @@ export default async function HomePage({
         <div className="split">
           <div>
             <p className="tag">{t.home.nonPartisanTag}</p>
-            <p className="clause" style={{ marginTop: "1.5rem" }}>
-              {t.home.nonPartisanClause}
-            </p>
-          </div>
-          <div>
-            <h2 className="d-lg">{t.home.nonPartisanTitle}</h2>
+            <h2 className="d-lg" style={{ marginTop: "0.75rem" }}>
+              {t.home.nonPartisanTitle}
+            </h2>
             <p className="prose-body" style={{ marginTop: "1.5rem" }}>
               {t.home.nonPartisanBody}
             </p>
@@ -123,6 +120,14 @@ export default async function HomePage({
             >
               {t.nav.about}
             </Link>
+          </div>
+          <div>
+            <p className="clause">{t.home.nonPartisanClause}</p>
+            <ul className="checklist" style={{ marginTop: "1.25rem" }}>
+              {t.join.eligibility.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
           </div>
         </div>
       </Band>
@@ -144,9 +149,17 @@ export default async function HomePage({
           }
         />
         <div className="split">
-          <div className="stack">
+          <div className="stack-lg">
+            <div>
+              <p className="tag">{t.home.reportWhatTag}</p>
+              <ul className="checklist" style={{ marginTop: "1.25rem" }}>
+                {t.home.complaintExamples.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
             <ul className="list-plain stack-sm">
-              {t.complaints.noticePoints.slice(0, 3).map((point) => (
+              {t.complaints.noticePoints.slice(0, 2).map((point) => (
                 <li
                   key={point.slice(0, 24)}
                   style={{
@@ -161,7 +174,11 @@ export default async function HomePage({
                 </li>
               ))}
             </ul>
-            <Link className="text-clay" href={`/${l}/complaints`} style={{ fontWeight: 600 }}>
+            <Link
+              className="text-clay"
+              href={`/${l}/complaints`}
+              style={{ fontWeight: 600 }}
+            >
               {t.home.complaintFull} →
             </Link>
           </div>

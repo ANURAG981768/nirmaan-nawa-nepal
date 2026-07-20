@@ -92,13 +92,20 @@ const en = {
       "That is not a promise — it is an eligibility condition in our own constitution, alongside the requirement that members have no conviction involving moral turpitude and no record of misusing public property. An organisation that scrutinises government has to be able to prove it is not working for one.",
     nonPartisanClause: "Written into our constitution",
 
-    complaintTag: "Public complaints",
-    complaintTitle: "Report a problem. Keep your name out of it if you need to.",
+    complaintTag: "Public accountability",
+    complaintTitle: "Seen corruption, neglect, or a service that failed you? Report it.",
     complaintBody:
-      "Complaints can be filed anonymously. Every complaint gets a reference code you can use to check its status later, so nothing disappears into an inbox.",
+      "You don't need your name, and you don't need proof — just tell us what happened. We record every report and carry it to the office that has to answer for it. Speaking up is where accountability begins.",
     complaintCta: "File a complaint",
     complaintTrack: "Check a complaint",
     complaintFull: "Read the full guidance and your rights",
+    reportWhatTag: "What you can report",
+    complaintExamples: [
+      "Corruption or misuse of public money",
+      "A public office that ignored, delayed, or mistreated you",
+      "A local service that failed — roads, water, waste, electricity",
+      "Feedback on our own work",
+    ],
 
     workTag: "Our work",
     workTitle: "What the organisation does.",
@@ -577,13 +584,20 @@ const ne: Copy = {
       "यो हाम्रो वाचा होइन — विधानमै लेखिएको सदस्यताको सर्त हो। सँगै नैतिक पतन देखिने फौजदारी अभियोगमा सजाय नपाएको र सार्वजनिक सम्पत्ति हिनामिना नगरेको हुनुपर्ने सर्त पनि छ। सरकारी कामको अनुगमन गर्ने संस्थाले आफू कुनै दलका लागि काम गरिरहेको छैन भन्ने प्रमाणित गर्न सक्नुपर्छ।",
     nonPartisanClause: "विधानमै लेखिएको",
 
-    complaintTag: "सार्वजनिक गुनासो",
-    complaintTitle: "समस्या सुनाउनुहोस्। आवश्यक परे नाम नदिई।",
+    complaintTag: "सार्वजनिक जवाफदेहिता",
+    complaintTitle: "भ्रष्टाचार, लापरबाही, वा तपाईंलाई असर गरेको सेवा — सुनाउनुहोस्।",
     complaintBody:
-      "गुनासो नामै नदिई पनि दर्ता गर्न सकिन्छ। हरेक गुनासोलाई एउटा सन्दर्भ नम्बर दिइन्छ, जसबाट पछि अवस्था हेर्न सकिन्छ — कुनै गुनासो इमेलमै हराउँदैन।",
+      "नाम चाहिँदैन, प्रमाण पनि चाहिँदैन — के भयो, त्यति भन्नुहोस्। हामी हरेक गुनासो अभिलेख गरी जवाफ दिनुपर्ने कार्यालयसम्म पुर्‍याउँछौं। बोल्नु नै जवाफदेहिताको सुरुवात हो।",
     complaintCta: "गुनासो दर्ता गर्नुहोस्",
     complaintTrack: "गुनासोको अवस्था हेर्नुहोस्",
     complaintFull: "पूर्ण मार्गदर्शन र तपाईंका अधिकार पढ्नुहोस्",
+    reportWhatTag: "के-के सुनाउन सकिन्छ",
+    complaintExamples: [
+      "भ्रष्टाचार वा सार्वजनिक रकमको दुरुपयोग",
+      "बेवास्ता गर्ने, ढिलाइ गर्ने वा दुर्व्यवहार गर्ने सार्वजनिक कार्यालय",
+      "बिग्रिएको स्थानीय सेवा — सडक, खानेपानी, फोहोर, बिजुली",
+      "हाम्रै कामबारे प्रतिक्रिया",
+    ],
 
     workTag: "हाम्रो काम",
     workTitle: "संस्थाले के गर्छ।",

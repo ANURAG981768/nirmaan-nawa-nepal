@@ -1417,6 +1417,47 @@ a.card:hover {
   padding: 0;
 }
 
+/* Checklist — a tick before each item. Works on light and ink bands. */
+.checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.checklist li {
+  display: grid;
+  grid-template-columns: 1.35rem 1fr;
+  gap: 0.65rem;
+  align-items: start;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.checklist li::before {
+  content: "";
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 999px;
+  background: var(--clay);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' d='M5 12.5l4.5 4.5L19 7'/%3E%3C/svg%3E")
+    center / 68% no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' d='M5 12.5l4.5 4.5L19 7'/%3E%3C/svg%3E")
+    center / 68% no-repeat;
+  flex: none;
+  margin-top: 0.08rem;
+}
+
+.band-ink .checklist li {
+  color: #d7dddf;
+}
+
+.band-ink .checklist li::before {
+  background: #f0c05b;
+}
+
 .back-home {
   display: inline-flex;
   align-items: center;
