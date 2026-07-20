@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { isLocale, ORG, type Locale } from "@/lib/org";
 import { getCopy } from "@/lib/content";
 import { Band, BandHead } from "@/components/Band";
+import BackHome from "@/components/BackHome";
 
 export async function generateMetadata({
   params,
@@ -91,6 +92,7 @@ export default async function PublicationsPage({
           </div>
         </div>
       </Band>
+      <BackHome locale={l} />
     </>
   );
 }

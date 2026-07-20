@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isLocale, ORG, type Locale } from "@/lib/org";
 import { getCopy } from "@/lib/content";
+import Link from "next/link";
 import { Band, BandHead, Hang } from "@/components/Band";
+import BackHome from "@/components/BackHome";
 
 export async function generateMetadata({
   params,
@@ -127,18 +129,19 @@ export default async function AboutPage({
           </div>
           <div>
             <p className="prose-body">{t.about.docsBody}</p>
-            <a
-              className="btn btn-primary"
-              href={`mailto:${ORG.email}?subject=${encodeURIComponent(
-                ne ? "कागजात माग" : "Document request",
-              )}`}
-              style={{ marginTop: "1.5rem" }}
-            >
-              {t.about.docsCta}
-            </a>
+            <div className="hero-actions">
+              <Link className="btn btn-primary" href={`/${l}/contact`}>
+                {t.about.docsCta}
+              </Link>
+              <Link className="btn btn-ghost" href={`/${l}/complaints`}>
+                {t.about.docsReport}
+              </Link>
+            </div>
           </div>
         </div>
       </Band>
+
+      <BackHome locale={l} />
     </>
   );
 }

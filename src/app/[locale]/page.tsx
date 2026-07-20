@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { isLocale, ORG, type Locale } from "@/lib/org";
 import { getCopy } from "@/lib/content";
 import { Band, BandHead, Hang } from "@/components/Band";
+import { ObjectiveIcon } from "@/components/Icons";
 import ComplaintForm from "@/components/ComplaintForm";
 
 export default async function HomePage({
@@ -56,10 +57,6 @@ export default async function HomePage({
                 <dd>{ne ? ORG.registrationNoNe : ORG.registrationNo}</dd>
               </div>
               <div className="fact">
-                <dt>{t.home.facts.regWith}</dt>
-                <dd>{ne ? ORG.registeredWithNe : ORG.registeredWith}</dd>
-              </div>
-              <div className="fact">
                 <dt>{t.home.facts.pan}</dt>
                 <dd>{ne ? ORG.panNe : ORG.pan}</dd>
               </div>
@@ -68,15 +65,15 @@ export default async function HomePage({
                 <dd>{t.home.facts.statusValue}</dd>
               </div>
               <div className="fact">
-                <dt>{t.home.facts.area}</dt>
-                <dd>{ne ? ORG.workingAreaNe : ORG.workingAreaEn}</dd>
+                <dt>{t.home.facts.location}</dt>
+                <dd>{ne ? ORG.cityNe : ORG.cityEn}</dd>
               </div>
             </dl>
           </aside>
         </div>
       </section>
 
-      {/* The four constitutional objectives. */}
+      {/* The four commitments — the homepage's main graphic device. */}
       <Band>
         <BandHead
           tag={t.home.purposeTag}
@@ -85,13 +82,13 @@ export default async function HomePage({
         />
         <div className="grid-4">
           {t.home.objectives.map((objective) => (
-            <Hang
-              key={objective.clause}
-              title={objective.title}
-              body={objective.body}
-              clause={objective.clause}
-              clauseLabel={t.common.clausePrefix}
-            />
+            <article className="objective" key={objective.title}>
+              <span className="objective-icon">
+                <ObjectiveIcon name={objective.icon} />
+              </span>
+              <h3>{objective.title}</h3>
+              <p>{objective.body}</p>
+            </article>
           ))}
         </div>
       </Band>
@@ -177,13 +174,7 @@ export default async function HomePage({
         />
         <div className="grid-3">
           {t.programs.items.slice(0, 3).map((item) => (
-            <Hang
-              key={item.title}
-              title={item.title}
-              body={item.body}
-              clause={item.clause}
-              clauseLabel={t.common.clausePrefix}
-            />
+            <Hang key={item.title} title={item.title} body={item.body} />
           ))}
         </div>
       </Band>

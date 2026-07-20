@@ -44,6 +44,9 @@ export const ORG = {
   /** Office — विधान दफा १(क) */
   addressEn: "Kageshwari Manohara Municipality–6, Kathmandu, Nepal",
   addressNe: "कागेश्वरी मनोहरा न.पा.–६, काठमाडौं, नेपाल",
+  /** Public-facing short location — used everywhere the address is displayed. */
+  cityEn: "Kathmandu, Nepal",
+  cityNe: "काठमाडौं, नेपाल",
   workingAreaEn: "Kathmandu district",
   workingAreaNe: "काठमाडौं जिल्ला",
 

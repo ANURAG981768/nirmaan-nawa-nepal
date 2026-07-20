@@ -45,7 +45,7 @@ export default function Footer({ locale }: { locale: Locale }) {
                 </a>
               ))}
               <span style={{ lineHeight: 1.6 }}>
-                {ne ? ORG.addressNe : ORG.addressEn}
+                {ne ? ORG.cityNe : ORG.cityEn}
               </span>
             </div>
           </div>

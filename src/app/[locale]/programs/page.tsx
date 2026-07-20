@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isLocale, ORG, type Locale } from "@/lib/org";
 import { getCopy } from "@/lib/content";
-import { Band, BandHead, Hang } from "@/components/Band";
+import { Band, Hang } from "@/components/Band";
+import BackHome from "@/components/BackHome";
 
 export async function generateMetadata({
   params,
@@ -45,13 +46,7 @@ export default async function ProgramsPage({
       <Band>
         <div className="grid-3">
           {t.programs.items.map((item) => (
-            <Hang
-              key={item.title}
-              title={item.title}
-              body={item.body}
-              clause={item.clause}
-              clauseLabel={t.common.clausePrefix}
-            />
+            <Hang key={item.title} title={item.title} body={item.body} />
           ))}
         </div>
       </Band>
@@ -78,6 +73,8 @@ export default async function ProgramsPage({
           </div>
         </div>
       </Band>
+
+      <BackHome locale={l} />
     </>
   );
 }

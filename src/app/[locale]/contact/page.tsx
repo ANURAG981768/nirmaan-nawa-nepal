@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { isLocale, ORG, type Locale } from "@/lib/org";
 import { getCopy } from "@/lib/content";
 import { Band } from "@/components/Band";
+import BackHome from "@/components/BackHome";
 import JoinForm from "@/components/JoinForm";
 import Social from "@/components/Social";
 
@@ -51,12 +52,7 @@ export default async function ContactPage({
             <div className="hang-head">
               <h3>{t.contact.officeTitle}</h3>
             </div>
-            <p>{ne ? ORG.addressNe : ORG.addressEn}</p>
-            <p className="mono">
-              {ne
-                ? `कार्यक्षेत्र: ${ORG.workingAreaNe}`
-                : `Working area: ${ORG.workingAreaEn}`}
-            </p>
+            <p>{ne ? ORG.cityNe : ORG.cityEn}</p>
           </article>
 
           <article className="hang">
@@ -137,6 +133,7 @@ export default async function ContactPage({
           <JoinForm locale={l} />
         </div>
       </Band>
+      <BackHome locale={l} />
     </>
   );
 }

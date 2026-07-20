@@ -54,35 +54,35 @@ const en = {
       regWith: "Registered with",
       pan: "PAN",
       status: "Status",
-      area: "Working area",
+      location: "Location",
       statusValue: "Non-profit, non-governmental",
     },
 
-    purposeTag: "Purpose",
-    purposeTitle: "Four objectives, written into our constitution.",
+    purposeTag: "What we work on",
+    purposeTitle: "Four commitments that guide everything we do.",
     purposeLead:
-      "These are not a mission statement we drafted for a website. They are the objectives registered with the District Administration Office, and we are accountable for them.",
+      "Not a mission statement drafted for a website — these are the commitments we registered and are held accountable for. Each one is work, not a slogan.",
 
     objectives: [
       {
-        clause: "4(a)",
+        icon: "research",
         title: "Study, research and teaching",
-        body: "Work across law, history, geopolitics and economics — and teaching what we learn, so the knowledge does not stay with the researchers.",
+        body: "Work across law, history, geopolitics and economics — and teaching what we learn, so the knowledge reaches the people it affects, not only the researchers.",
       },
       {
-        clause: "4(b)",
+        icon: "youth",
         title: "Youth in democratic practice",
-        body: "Programmes that bring young people into civic consciousness, voter rights and the everyday practice of democracy.",
+        body: "Bringing young people into civic consciousness, voter rights and the everyday practice of democracy.",
       },
       {
-        clause: "4(c)",
+        icon: "scrutiny",
         title: "Scrutiny of government",
         body: "Investigation, analysis and commentary on government work, policy and rules — read through the public interest.",
       },
       {
-        clause: "4(d)",
-        title: "Working with others",
-        body: "Programmes run jointly with organisations that share these objectives, rather than duplicating what already works.",
+        icon: "society",
+        title: "Working for a stronger society",
+        body: "Partnering with organisations that share our goals to strengthen communities — adding to good work already underway, never duplicating it.",
       },
     ],
 
@@ -90,7 +90,7 @@ const en = {
     nonPartisanTitle: "No member of this organisation may belong to a political party.",
     nonPartisanBody:
       "That is not a promise — it is an eligibility condition in our own constitution, alongside the requirement that members have no conviction involving moral turpitude and no record of misusing public property. An organisation that scrutinises government has to be able to prove it is not working for one.",
-    nonPartisanClause: "Clause 7 — conditions of membership",
+    nonPartisanClause: "Written into our constitution",
 
     complaintTag: "Public complaints",
     complaintTitle: "Report a problem. Keep your name out of it if you need to.",
@@ -122,7 +122,7 @@ const en = {
       "Who we are, what our constitution requires of us, how we are governed, and the registration details that make us verifiable.",
     tag: "About",
     title: "A civic organisation that can be checked.",
-    lead: "Nirmaan Nawa Nepal was registered in 2082 BS under the Association Registration Act, 2034, at the District Administration Office in Babarmahal, Kathmandu. Our office is in Kageshwari Manohara–6 and our working area is Kathmandu district.",
+    lead: "Nirmaan Nawa Nepal is a registered, non-partisan social organisation based in Kathmandu, established in 2082 BS under the Association Registration Act, 2034. We study how Nepal is governed, bring young citizens into democratic practice, and carry public concerns to the institutions responsible for them.",
 
     storyTag: "Why we exist",
     storyTitle: "Civic knowledge, held by the people it affects.",
@@ -180,11 +180,12 @@ const en = {
     teamPending:
       "Officer names and photographs will be published here once the Working Committee is seated and its details are confirmed. We would rather leave this section visibly empty than fill it with names we have not verified.",
 
-    docsTag: "Documents",
-    docsTitle: "Our paperwork, available to anyone who asks.",
+    docsTag: "Questions & concerns",
+    docsTitle: "Have a question, or something you want to raise?",
     docsBody:
-      "The registration certificate, PAN certificate and the full constitution can be requested by email. If you are considering supporting or partnering with us, ask for them — and ask any other organisation that approaches you for the same.",
-    docsCta: "Request our documents",
+      "Ask us anything about our work, our governance, or how we handle a concern — we would rather answer plainly than have you wonder. If you have a public issue to report, the complaint channel gives you a tracking code.",
+    docsCta: "Ask a question",
+    docsReport: "Report an issue",
   },
 
   programs: {
@@ -538,35 +539,35 @@ const ne: Copy = {
       regWith: "दर्ता गर्ने निकाय",
       pan: "स्थायी लेखा नं.",
       status: "स्वरूप",
-      area: "कार्यक्षेत्र",
+      location: "स्थान",
       statusValue: "मुनाफारहित, गैरसरकारी",
     },
 
-    purposeTag: "उद्देश्य",
-    purposeTitle: "विधानमै लेखिएका चार उद्देश्य।",
+    purposeTag: "हामी केमा काम गर्छौं",
+    purposeTitle: "हाम्रो हरेक कामलाई डोर्‍याउने चार प्रतिबद्धता।",
     purposeLead:
-      "यी वेबसाइटका लागि लेखिएका वाक्य होइनन्। यी जिल्ला प्रशासन कार्यालयमा दर्ता भएका उद्देश्य हुन्, र यिनको जवाफदेहिता हामीमाथि छ।",
+      "वेबसाइटका लागि लेखिएका वाक्य होइनन् — यी हामीले दर्ता गरेका र जवाफदेही हुनुपर्ने प्रतिबद्धता हुन्। हरेक नारा होइन, काम हो।",
 
     objectives: [
       {
-        clause: "४(क)",
+        icon: "research",
         title: "अध्ययन, अनुसन्धान र अध्यापन",
-        body: "कानून, इतिहास, भू-राजनीति र अर्थतन्त्रका विषयमा अध्ययन र अनुसन्धान — र सिकेको कुरा अध्यापन गर्ने, ताकि ज्ञान अनुसन्धानकर्तासँगै नअड्कियोस्।",
+        body: "कानून, इतिहास, भू-राजनीति र अर्थतन्त्रमा अध्ययन र अनुसन्धान — र सिकेको कुरा अध्यापन गर्ने, ताकि ज्ञान अनुसन्धानकर्तासँगै नअड्कियोस्।",
       },
       {
-        clause: "४(ख)",
+        icon: "youth",
         title: "लोकतान्त्रिक अभ्यासमा युवा",
         body: "युवामा नागरिक चेतना, मतदाता अधिकार र दैनिक लोकतान्त्रिक अभ्यास बढाउने कार्यक्रमहरू।",
       },
       {
-        clause: "४(ग)",
+        icon: "scrutiny",
         title: "सरकारी कामको अनुगमन",
         body: "सरकारी कार्य, नीति र नियममाथि अन्वेषण, विश्लेषण र टिप्पणी — सार्वजनिक हितको दृष्टिकोणबाट।",
       },
       {
-        clause: "४(घ)",
-        title: "अरूसँगको सहकार्य",
-        body: "साझा उद्देश्य भएका संस्थासँग मिलेर कार्यक्रम सञ्चालन — पहिले नै राम्रोसँग भइरहेको काम दोहोर्‍याउनुभन्दा।",
+        icon: "society",
+        title: "समाजको उत्थानका लागि काम",
+        body: "साझा उद्देश्य भएका संस्थासँग मिलेर समुदाय सुदृढ बनाउने — भइरहेको असल कामलाई थप्ने, दोहोर्‍याउने होइन।",
       },
     ],
 
@@ -574,7 +575,7 @@ const ne: Copy = {
     nonPartisanTitle: "यस संस्थाको कुनै पनि सदस्य राजनीतिक दलको सदस्य हुन पाउँदैन।",
     nonPartisanBody:
       "यो हाम्रो वाचा होइन — विधानमै लेखिएको सदस्यताको सर्त हो। सँगै नैतिक पतन देखिने फौजदारी अभियोगमा सजाय नपाएको र सार्वजनिक सम्पत्ति हिनामिना नगरेको हुनुपर्ने सर्त पनि छ। सरकारी कामको अनुगमन गर्ने संस्थाले आफू कुनै दलका लागि काम गरिरहेको छैन भन्ने प्रमाणित गर्न सक्नुपर्छ।",
-    nonPartisanClause: "दफा ७ — सदस्यताका सर्त",
+    nonPartisanClause: "विधानमै लेखिएको",
 
     complaintTag: "सार्वजनिक गुनासो",
     complaintTitle: "समस्या सुनाउनुहोस्। आवश्यक परे नाम नदिई।",
@@ -606,7 +607,7 @@ const ne: Copy = {
       "हामी को हौं, विधानले हामीबाट के माग गर्छ, संस्था कसरी सञ्चालित छ, र हामीलाई प्रमाणित गर्न सकिने दर्ता विवरण।",
     tag: "हाम्रोबारे",
     title: "जाँच्न सकिने नागरिक संस्था।",
-    lead: "निर्माण नव नेपाल संस्था दर्ता ऐन, २०३४ अन्तर्गत २०८२ सालमा जिल्ला प्रशासन कार्यालय, बबरमहल, काठमाडौंमा दर्ता भएको हो। कार्यालय कागेश्वरी मनोहरा–६ मा छ र कार्यक्षेत्र काठमाडौं जिल्ला हो।",
+    lead: "निर्माण नव नेपाल काठमाडौंमा आधारित दर्ता भएको, गैरदलीय सामाजिक संस्था हो, जुन संस्था दर्ता ऐन, २०३४ अन्तर्गत २०८२ सालमा स्थापना भएको हो। नेपाल कसरी सञ्चालित छ भन्ने अध्ययन गर्छौं, युवा नागरिकलाई लोकतान्त्रिक अभ्यासमा सहभागी गराउँछौं, र सार्वजनिक सरोकार जिम्मेवार निकायसम्म पुर्‍याउँछौं।",
 
     storyTag: "किन आवश्यक",
     storyTitle: "नागरिक ज्ञान, त्यसले असर पार्ने मानिससँगै।",
@@ -664,11 +665,12 @@ const ne: Copy = {
     teamPending:
       "कार्य समिति गठन भई विवरण पुष्टि भएपछि पदाधिकारीको नाम र तस्बिर यहाँ प्रकाशित हुनेछ। पुष्टि नभएका नाम राख्नुभन्दा यो ठाउँ खुलै राख्नु उचित ठान्यौं।",
 
-    docsTag: "कागजात",
-    docsTitle: "हाम्रा कागजात, माग्ने जोसुकैलाई उपलब्ध।",
+    docsTag: "प्रश्न र सरोकार",
+    docsTitle: "कुनै प्रश्न छ, वा केही उठाउन चाहनुहुन्छ?",
     docsBody:
-      "दर्ता प्रमाण-पत्र, स्थायी लेखा नम्बर प्रमाण पत्र र पूर्ण विधान इमेलबाट माग्न सकिन्छ। सहयोग वा साझेदारीबारे सोच्दै हुनुहुन्छ भने माग्नुहोस् — र तपाईंलाई सम्पर्क गर्ने अन्य संस्थासँग पनि यही माग्नुहोस्।",
-    docsCta: "कागजात माग्नुहोस्",
+      "हाम्रो काम, सञ्चालन, वा कुनै सरोकार कसरी सम्बोधन गर्छौं — जेसुकै सोध्नुहोस्। तपाईंलाई अन्योलमा राख्नुभन्दा प्रस्ट जवाफ दिन रुचाउँछौं। सार्वजनिक समस्या सुनाउने हो भने गुनासो माध्यमले सन्दर्भ नम्बर दिन्छ।",
+    docsCta: "प्रश्न सोध्नुहोस्",
+    docsReport: "समस्या सुनाउनुहोस्",
   },
 
   programs: {

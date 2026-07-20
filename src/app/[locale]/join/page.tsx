@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { isLocale, type Locale } from "@/lib/org";
 import { getCopy } from "@/lib/content";
 import { Band, BandHead } from "@/components/Band";
+import BackHome from "@/components/BackHome";
 import JoinForm from "@/components/JoinForm";
 
 export async function generateMetadata({
@@ -52,12 +53,7 @@ export default async function JoinPage({
         <div className="grid-3">
           {t.join.tiers.map((tier) => (
             <article className="card" key={tier.name}>
-              <div className="hang-head">
-                <p className="tag tag-quiet">{tier.note}</p>
-                <span className="clause">
-                  {t.common.clausePrefix} {tier.clause}
-                </span>
-              </div>
+              <p className="tag tag-quiet">{tier.note}</p>
               <h3>{tier.name}</h3>
               <p>{tier.body}</p>
             </article>
@@ -108,6 +104,7 @@ export default async function JoinPage({
           <JoinForm locale={l} />
         </div>
       </Band>
+      <BackHome locale={l} />
     </>
   );
 }

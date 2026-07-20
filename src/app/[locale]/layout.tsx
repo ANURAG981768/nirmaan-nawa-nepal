@@ -112,8 +112,6 @@ export default async function LocaleLayout({
     foundingDate: ORG.established,
     address: {
       "@type": "PostalAddress",
-      streetAddress:
-        locale === "ne" ? ORG.addressNe : ORG.addressEn,
       addressLocality: "Kathmandu",
       addressCountry: "NP",
     },

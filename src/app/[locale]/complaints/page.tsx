@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { isLocale, type Locale } from "@/lib/org";
 import { getCopy } from "@/lib/content";
 import { Band, BandHead } from "@/components/Band";
+import BackHome from "@/components/BackHome";
 import ComplaintForm from "@/components/ComplaintForm";
 import TrackForm from "@/components/TrackForm";
 
@@ -78,6 +79,7 @@ export default async function ComplaintsPage({
         />
         <TrackForm locale={l} />
       </Band>
+      <BackHome locale={l} />
     </>
   );
 }
