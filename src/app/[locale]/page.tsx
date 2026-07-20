@@ -149,7 +149,7 @@ export default async function HomePage({
           }
         />
         <div className="split">
-          <div className="stack-lg">
+          <div className="stack-lg report-aside">
             <div>
               <p className="tag">{t.home.reportWhatTag}</p>
               <ul className="checklist" style={{ marginTop: "1.25rem" }}>

@@ -1417,6 +1417,16 @@ a.card:hover {
   padding: 0;
 }
 
+/* Report section: the guidance column stays beside the tall form as it
+   scrolls, so there is no dead space next to it. */
+@media (min-width: 900px) {
+  .report-aside {
+    position: sticky;
+    top: 5.75rem;
+    align-self: start;
+  }
+}
+
 /* Checklist — a tick before each item. Works on light and ink bands. */
 .checklist {
   list-style: none;
