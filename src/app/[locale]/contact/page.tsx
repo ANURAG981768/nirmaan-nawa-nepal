@@ -3,7 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { isLocale, ORG, type Locale } from "@/lib/org";
 import { getCopy } from "@/lib/content";
-import { Band, BandHead } from "@/components/Band";
+import { Band } from "@/components/Band";
+import JoinForm from "@/components/JoinForm";
 
 export async function generateMetadata({
   params,
@@ -112,41 +113,19 @@ export default async function ContactPage({
         </div>
       </Band>
 
+      {/* The one form: questions, membership, volunteering, partnership. */}
       <Band>
-        <BandHead
-          tag={t.contact.registryTag}
-          title={t.contact.registryTitle}
-          lead={t.contact.registryBody}
-        />
-        <div className="grid-4">
-          <div className="hang">
-            <p className="tag tag-quiet">
-              {ne ? "दर्ता नं." : "Registration no."}
-            </p>
-            <p className="d-sm">
-              {ne ? ORG.registrationNoNe : ORG.registrationNo}
+        <div className="split">
+          <div>
+            <p className="tag">{t.contact.formTag}</p>
+            <h2 className="d-md" style={{ marginTop: "0.75rem" }}>
+              {t.contact.formTitle}
+            </h2>
+            <p className="prose-body" style={{ marginTop: "1.25rem" }}>
+              {t.join.formLead}
             </p>
           </div>
-          <div className="hang">
-            <p className="tag tag-quiet">
-              {ne ? "स्थायी लेखा नं." : "PAN"}
-            </p>
-            <p className="d-sm">{ne ? ORG.panNe : ORG.pan}</p>
-          </div>
-          <div className="hang">
-            <p className="tag tag-quiet">{ne ? "दर्ता मिति" : "Registered"}</p>
-            <p className="d-sm">
-              {ne ? ORG.registeredOnNe : ORG.registeredOn}
-            </p>
-          </div>
-          <div className="hang">
-            <p className="tag tag-quiet">
-              {ne ? "दर्ता गर्ने निकाय" : "Registered with"}
-            </p>
-            <p style={{ margin: 0 }}>
-              {ne ? ORG.registeredWithNe : ORG.registeredWith}
-            </p>
-          </div>
+          <JoinForm locale={l} />
         </div>
       </Band>
     </>

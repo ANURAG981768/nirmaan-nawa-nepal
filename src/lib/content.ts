@@ -366,8 +366,8 @@ const en = {
     metaDesc:
       "Membership, volunteering and partnership with Nirmaan Nawa Nepal. Membership tiers and eligibility are set by our constitution.",
     tag: "Get involved",
-    title: "Join, volunteer, or work with us.",
-    lead: "There are three ways in. Membership makes you part of the General Assembly that governs this organisation. Volunteering does not require membership. Partnership is for organisations.",
+    title: "Ask us something, or join us.",
+    lead: "One form for all of it. Ask a question, apply for membership, offer to volunteer, or propose a partnership — say which below and it reaches the right person.",
 
     tiersTag: "Membership",
     tiersTitle: "The tiers, and what they cost.",
@@ -408,18 +408,21 @@ const en = {
       "Genuinely interested in social work",
     ],
 
-    formTag: "Apply",
-    formTitle: "Send an application.",
+    formTag: "Get in touch",
+    formTitle: "Send it here.",
     formLead:
-      "This is an expression of interest, not an automatic membership. The Working Committee decides on applications, and if it declines it must tell you why.",
+      "Questions are answered by whoever handles that area. A membership application is an expression of interest, not automatic membership — the Working Committee decides, and if it declines our constitution requires it to tell you why.",
     form: {
-      intentLabel: "What are you applying for?",
+      intentLabel: "What is this about?",
       intents: {
+        inquiry: "I have a question",
         general: "General membership",
         life: "Life membership",
         volunteer: "Volunteering — no membership needed",
         partner: "Partnership — I represent an organisation",
       },
+      subjectLabel: "Your question",
+      subjectPlaceholder: "A line or two — what do you want to know?",
       nameLabel: "Full name",
       emailLabel: "Email",
       phoneLabel: "Phone",
@@ -432,13 +435,13 @@ const en = {
         "Research, civic education, policy analysis, documentation, events, communications — and anything you already know how to do.",
       declarationLabel:
         "I meet the conditions in Clause 7, including that I am not a member of any political party.",
-      submit: "Send application",
+      submit: "Send",
       submitting: "Sending…",
     },
-    successTag: "Application sent",
+    successTag: "Sent",
     successTitle: "We have it.",
     successBody:
-      "The Working Committee reviews applications and will contact you at the details you gave. If we decline, our constitution requires us to give you the reason.",
+      "We will reply at the details you gave. If this was a membership application, the Working Committee reviews it — and if it declines, our constitution requires it to tell you why.",
     errors: {
       name: "Please give your name.",
       contact: "Please give an email or a phone number so we can reply.",
@@ -466,10 +469,8 @@ const en = {
     complaintPromptBody:
       "Use the complaints form instead — it gives you a reference code so you can follow what happened.",
     complaintPromptCta: "File a complaint",
-    registryTag: "Registration",
-    registryTitle: "Verify us.",
-    registryBody:
-      "Our registration can be checked with the District Administration Office, Kathmandu, against the details below.",
+    formTag: "Enquiries",
+    formTitle: "Send us a message.",
   },
 
   footer: {
@@ -845,8 +846,8 @@ const ne: Copy = {
     metaDesc:
       "निर्माण नव नेपालको सदस्यता, स्वयंसेवा र साझेदारी। सदस्यताका तह र योग्यता विधानले तोकेका छन्।",
     tag: "सहभागी हुनुहोस्",
-    title: "सदस्य बन्नुहोस्, स्वयंसेवा गर्नुहोस्, वा सँगै काम गर्नुहोस्।",
-    lead: "भित्रिने तीन बाटो छन्। सदस्यताले तपाईंलाई संस्था सञ्चालन गर्ने साधारण सभाको अंग बनाउँछ। स्वयंसेवाका लागि सदस्यता चाहिँदैन। साझेदारी संस्थाहरूका लागि हो।",
+    title: "केही सोध्नुहोस्, वा सँगै जुट्नुहोस्।",
+    lead: "सबैका लागि एउटै फारम। प्रश्न सोध्नुहोस्, सदस्यताका लागि आवेदन दिनुहोस्, स्वयंसेवाको प्रस्ताव राख्नुहोस्, वा साझेदारीको कुरा गर्नुहोस् — तल छान्नुहोस्, सम्बन्धित व्यक्तिसम्म पुग्छ।",
 
     tiersTag: "सदस्यता",
     tiersTitle: "तह, र त्यसको शुल्क।",
@@ -887,18 +888,21 @@ const ne: Copy = {
       "सामाजिक कार्यमा साँच्चै अभिरुचि भएको",
     ],
 
-    formTag: "आवेदन",
-    formTitle: "आवेदन पठाउनुहोस्।",
+    formTag: "सम्पर्क गर्नुहोस्",
+    formTitle: "यहीं पठाउनुहोस्।",
     formLead:
-      "यो इच्छा व्यक्त गर्ने माध्यम हो, स्वतः सदस्यता होइन। आवेदनमा कार्य समितिले निर्णय गर्छ, र अस्वीकार गरेमा कारणसहित जानकारी दिनुपर्ने विधानमै व्यवस्था छ।",
+      "प्रश्नको जवाफ सम्बन्धित क्षेत्र हेर्ने व्यक्तिले दिनेछन्। सदस्यताको आवेदन इच्छा व्यक्त गर्ने माध्यम हो, स्वतः सदस्यता होइन — कार्य समितिले निर्णय गर्छ, र अस्वीकार गरेमा कारण बताउनुपर्ने व्यवस्था विधानमै छ।",
     form: {
-      intentLabel: "तपाईं केका लागि आवेदन दिँदै हुनुहुन्छ?",
+      intentLabel: "यो केसँग सम्बन्धित छ?",
       intents: {
+        inquiry: "मेरो प्रश्न छ",
         general: "साधारण सदस्यता",
         life: "आजीवन सदस्यता",
         volunteer: "स्वयंसेवा — सदस्यता चाहिँदैन",
         partner: "साझेदारी — म संस्थाको प्रतिनिधि हुँ",
       },
+      subjectLabel: "तपाईंको प्रश्न",
+      subjectPlaceholder: "एक-दुई हरफ — तपाईं के जान्न चाहनुहुन्छ?",
       nameLabel: "पूरा नाम",
       emailLabel: "इमेल",
       phoneLabel: "फोन",
@@ -911,13 +915,13 @@ const ne: Copy = {
         "अनुसन्धान, नागरिक शिक्षा, नीति विश्लेषण, अभिलेखीकरण, कार्यक्रम, सञ्चार — र तपाईंलाई पहिले नै आउने कुनै सीप।",
       declarationLabel:
         "म दफा ७ का सर्त पूरा गर्छु, कुनै पनि राजनीतिक दलको सदस्य नरहेको समेत।",
-      submit: "आवेदन पठाउनुहोस्",
+      submit: "पठाउनुहोस्",
       submitting: "पठाउँदै…",
     },
-    successTag: "आवेदन पठाइयो",
+    successTag: "पठाइयो",
     successTitle: "हामीले पायौं।",
     successBody:
-      "कार्य समितिले आवेदन हेर्छ र तपाईंले दिनुभएको विवरणमा सम्पर्क गर्नेछ। अस्वीकार गरेमा कारण बताउनुपर्ने व्यवस्था विधानमै छ।",
+      "तपाईंले दिनुभएको विवरणमा हामी जवाफ दिनेछौं। यो सदस्यताको आवेदन हो भने कार्य समितिले हेर्छ — अस्वीकार गरेमा कारण बताउनुपर्ने व्यवस्था विधानमै छ।",
     errors: {
       name: "कृपया आफ्नो नाम लेख्नुहोस्।",
       contact: "जवाफ दिन सकियोस् भनेर इमेल वा फोन नम्बर दिनुहोस्।",
@@ -944,10 +948,8 @@ const ne: Copy = {
     complaintPromptBody:
       "बरु गुनासो फारम प्रयोग गर्नुहोस् — त्यसले सन्दर्भ नम्बर दिन्छ, जसबाट के भयो भनेर पछ्याउन सकिन्छ।",
     complaintPromptCta: "गुनासो दर्ता गर्नुहोस्",
-    registryTag: "दर्ता",
-    registryTitle: "हामीलाई प्रमाणित गर्नुहोस्।",
-    registryBody:
-      "तलका विवरणका आधारमा जिल्ला प्रशासन कार्यालय, काठमाडौंमा हाम्रो दर्ता जाँच्न सकिन्छ।",
+    formTag: "जिज्ञासा",
+    formTitle: "हामीलाई सन्देश पठाउनुहोस्।",
   },
 
   footer: {

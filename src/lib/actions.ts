@@ -191,7 +191,14 @@ export type ApplicationState =
     }
   | { status: "done" };
 
-const INTENTS = ["general", "life", "volunteer", "partner"] as const;
+const INTENTS = ["inquiry", "general", "life", "volunteer", "partner"] as const;
+
+/**
+ * Only membership asks for the Clause 7 declaration. Someone asking a
+ * question is not applying to join, and must not be made to declare their
+ * political affiliations to send an email.
+ */
+const MEMBERSHIP_INTENTS = ["general", "life"] as const;
 
 export async function submitApplication(
   _prev: ApplicationState,
@@ -212,7 +219,11 @@ export async function submitApplication(
   const address = clean(formData.get("address"), 300);
   const organisation = clean(formData.get("organisation"), 300);
   const interest = clean(formData.get("interest"), 4000);
+  const subject = clean(formData.get("subject"), 300);
   const declared = formData.get("declaration") === "on";
+  const needsDeclaration = (MEMBERSHIP_INTENTS as readonly string[]).includes(
+    intent,
+  );
 
   const values: SubmittedValues = {
     intent,
@@ -222,6 +233,7 @@ export async function submitApplication(
     address,
     organisation,
     interest,
+    subject,
     declaration: declared ? "on" : "",
   };
 
@@ -231,7 +243,7 @@ export async function submitApplication(
   if (!email && !phone) {
     return { status: "error", field: "email", message: "contact", values };
   }
-  if (!declared) {
+  if (needsDeclaration && !declared) {
     return {
       status: "error",
       field: "declaration",
@@ -253,7 +265,8 @@ export async function submitApplication(
     address: address || null,
     organisation: organisation || null,
     interest: interest || null,
-    declaration_accepted: true,
+    subject: subject || null,
+    declaration_accepted: needsDeclaration && declared,
     status: "new",
     locale: clean(formData.get("locale"), 5) || "en",
   });

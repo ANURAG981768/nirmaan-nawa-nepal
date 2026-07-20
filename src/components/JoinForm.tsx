@@ -11,7 +11,11 @@ export default function JoinForm({ locale }: { locale: Locale }) {
   const t = getCopy(locale);
   const f = t.join.form;
   const [state, action, pending] = useActionState(submitApplication, initial);
-  const [intent, setIntent] = useState<string>("general");
+  const [intent, setIntent] = useState<string>("inquiry");
+
+  // The form is one form, but it should not ask everyone for everything.
+  const isMembership = intent === "general" || intent === "life";
+  const isInquiry = intent === "inquiry";
 
   if (state.status === "done") {
     return (
@@ -86,6 +90,21 @@ export default function JoinForm({ locale }: { locale: Locale }) {
         </div>
       </fieldset>
 
+      {/* Asked only of people who came here with a question. */}
+      {isInquiry ? (
+        <div className="field">
+          <label htmlFor="join-subject">{f.subjectLabel}</label>
+          <input
+            id="join-subject"
+            name="subject"
+            type="text"
+            maxLength={300}
+            defaultValue={v.subject ?? ""}
+            placeholder={f.subjectPlaceholder}
+          />
+        </div>
+      ) : null}
+
       <div className="field">
         <label htmlFor="join-name">{f.nameLabel}</label>
         <input
@@ -123,17 +142,20 @@ export default function JoinForm({ locale }: { locale: Locale }) {
         />
       </div>
 
-      <div className="field">
-        <label htmlFor="join-address">{f.addressLabel}</label>
-        <input
-          id="join-address"
-          name="address"
-          type="text"
-          maxLength={300}
-          defaultValue={v.address ?? ""}
-          placeholder={f.addressPlaceholder}
-        />
-      </div>
+      {/* Where you live matters for membership, not for a question. */}
+      {isInquiry ? null : (
+        <div className="field">
+          <label htmlFor="join-address">{f.addressLabel}</label>
+          <input
+            id="join-address"
+            name="address"
+            type="text"
+            maxLength={300}
+            defaultValue={v.address ?? ""}
+            placeholder={f.addressPlaceholder}
+          />
+        </div>
+      )}
 
       {/* Only asked of people who say they represent an organisation. */}
       {intent === "partner" ? (
@@ -162,16 +184,20 @@ export default function JoinForm({ locale }: { locale: Locale }) {
         />
       </div>
 
-      <label className="choice" style={{ marginBottom: "1.75rem" }}>
-        <input
-          type="checkbox"
-          name="declaration"
-          defaultChecked={v.declaration === "on"}
-        />
-        <span className="choice-body">
-          <b style={{ fontWeight: 400 }}>{f.declarationLabel}</b>
-        </span>
-      </label>
+      {/* Clause 7 applies to membership. Nobody has to declare their
+          political affiliations just to ask a question. */}
+      {isMembership ? (
+        <label className="choice" style={{ marginBottom: "1.75rem" }}>
+          <input
+            type="checkbox"
+            name="declaration"
+            defaultChecked={v.declaration === "on"}
+          />
+          <span className="choice-body">
+            <b style={{ fontWeight: 400 }}>{f.declarationLabel}</b>
+          </span>
+        </label>
+      ) : null}
 
       <button className="btn btn-primary" type="submit" disabled={pending}>
         {pending ? f.submitting : f.submit}

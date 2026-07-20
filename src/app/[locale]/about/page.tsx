@@ -30,64 +30,6 @@ export default async function AboutPage({
   const t = getCopy(l);
   const ne = l === "ne";
 
-  const registryRows = [
-    {
-      label: ne ? "संस्थाको नाम" : "Registered name",
-      value: ne ? ORG.nameNe : `${ORG.nameNe} (${ORG.nameEn})`,
-    },
-    {
-      label: ne ? "अंग्रेजीमा" : "In English",
-      value: ORG.nameEnLegal,
-    },
-    {
-      label: ne ? "दर्ता नं." : "Registration no.",
-      value: ne ? ORG.registrationNoNe : ORG.registrationNo,
-    },
-    {
-      label: ne ? "दर्ता मिति" : "Registered on",
-      value: ne ? ORG.registeredOnNe : ORG.registeredOn,
-    },
-    {
-      label: ne ? "दर्ता ऐन" : "Registered under",
-      value: ne ? ORG.registeredUnderNe : ORG.registeredUnder,
-    },
-    {
-      label: ne ? "दर्ता गर्ने निकाय" : "Registered with",
-      value: ne ? ORG.registeredWithNe : ORG.registeredWith,
-    },
-    {
-      label: ne ? "प.सं." : "File no.",
-      value: ne ? ORG.fileNoNe : ORG.fileNo,
-    },
-    {
-      label: ne ? "स्थायी लेखा नं." : "PAN",
-      value: ne ? ORG.panNe : ORG.pan,
-    },
-    {
-      label: ne ? "कर कार्यालय" : "Tax office",
-      value: ne ? ORG.panOfficeNe : ORG.panOffice,
-    },
-    {
-      label: ne ? "करदाताको प्रकार" : "Taxpayer type",
-      value: ne ? ORG.taxpayerTypeNe : ORG.taxpayerType,
-    },
-    {
-      label: ne ? "विधान" : "Constitution",
-      value: ne ? ORG.constitutionNameNe : ORG.constitutionName,
-    },
-    {
-      label: ne ? "विधान पारित" : "Constitution passed",
-      value: ne ? ORG.constitutionPassedNe : ORG.constitutionPassed,
-    },
-    {
-      label: ne ? "कार्यालय" : "Office",
-      value: ne ? ORG.addressNe : ORG.addressEn,
-    },
-    {
-      label: ne ? "कार्यक्षेत्र" : "Working area",
-      value: ne ? ORG.workingAreaNe : ORG.workingAreaEn,
-    },
-  ];
 
   return (
     <>
@@ -172,31 +114,6 @@ export default async function AboutPage({
             <p className="prose-body">{t.about.moneyForeign}</p>
             <p className="prose-body">{t.about.moneyAudit}</p>
           </div>
-        </div>
-      </Band>
-
-      {/* The registry table — everything a person needs to verify us. */}
-      <Band>
-        <BandHead
-          tag={t.contact.registryTag}
-          title={t.contact.registryTitle}
-          lead={t.contact.registryBody}
-        />
-        <div className="grid-2">
-          {registryRows.map((row) => (
-            <div
-              key={row.label}
-              className="fact"
-              style={{
-                borderTop: "1px solid var(--line)",
-                paddingTop: "0.75rem",
-                fontSize: "0.8125rem",
-              }}
-            >
-              <dt style={{ fontSize: "0.6875rem" }}>{row.label}</dt>
-              <dd>{row.value}</dd>
-            </div>
-          ))}
         </div>
       </Band>
 
