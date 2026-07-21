@@ -1484,27 +1484,18 @@ a.card:hover {
   background: #f0c05b;
 }
 
-.back-home {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: var(--mono);
-  font-size: 0.8125rem;
-  letter-spacing: 0.04em;
-  color: var(--slate);
-  text-decoration: none;
-  min-height: 44px;
-  transition: color 0.18s ease, gap 0.18s ease;
+/* Back-to-home button — centred at the foot of every inner page. */
+.back-home-band > .shell {
+  display: flex;
+  justify-content: center;
 }
 
-.back-home span {
+.back-home-btn {
+  gap: 0.6rem;
+}
+
+.back-home-btn svg {
   color: var(--clay);
-  font-size: 1.05rem;
-}
-
-.back-home:hover {
-  color: var(--ink);
-  gap: 0.7rem;
 }
 
 /* ---------- social ---------- */
