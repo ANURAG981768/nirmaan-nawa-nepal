@@ -115,41 +115,25 @@ export async function submitComplaint(
     };
   }
 
-  const supabase = getSupabase();
-  if (!supabase) {
-    return { status: "error", message: "generic", values };
-  }
-
   const reference = makeReference();
+  const supabase = getSupabase(); // may be null / asleep — email still works
 
   // Photo / video evidence → storage → a link in the notification email.
   const files = formData
     .getAll("files")
     .filter((f): f is File => f instanceof File && f.size > 0);
-  const attachmentUrls = await uploadEvidence(supabase, reference, files);
-
-  const { error } = await supabase.from("complaints").insert({
-    reference,
-    category,
-    subject,
-    location: location || null,
-    description,
-    name: name || null,
-    email: email || null,
-    phone: phone || null,
-    consent_to_forward: consent,
-    attachment_count: attachmentUrls.length,
-    status: "received",
-    locale: clean(formData.get("locale"), 5) || "en",
-  });
-
-  if (error) {
-    console.error("complaint insert failed", error.message);
-    return { status: "error", message: "generic", values };
+  let attachmentUrls: string[] = [];
+  if (supabase && files.length) {
+    try {
+      attachmentUrls = await uploadEvidence(supabase, reference, files);
+    } catch (err) {
+      console.error("evidence upload failed", err);
+    }
   }
 
-  // Email the organisation AFTER the response is sent, so a slow mail relay
-  // never delays the reporter's reference or trips the function timeout.
+  // Email is the guaranteed delivery: it runs after the response and does
+  // NOT depend on the database, so a complaint reaches the organisation
+  // even if Supabase is paused or unreachable.
   after(async () => {
     try {
       await notifyComplaint({
@@ -168,6 +152,27 @@ export async function submitComplaint(
       console.error("complaint notify failed", err);
     }
   });
+
+  // Record it for the log and the tracking lookup — best effort only.
+  if (supabase) {
+    const { error } = await supabase.from("complaints").insert({
+      reference,
+      category,
+      subject,
+      location: location || null,
+      description,
+      name: name || null,
+      email: email || null,
+      phone: phone || null,
+      consent_to_forward: consent,
+      attachment_count: attachmentUrls.length,
+      status: "received",
+      locale: clean(formData.get("locale"), 5) || "en",
+    });
+    if (error) {
+      console.error("complaint insert failed (email still sent)", error.message);
+    }
+  }
 
   return { status: "done", reference };
 }
@@ -312,30 +317,7 @@ export async function submitApplication(
     };
   }
 
-  const supabase = getSupabase();
-  if (!supabase) {
-    return { status: "error", message: "generic", values };
-  }
-
-  const { error } = await supabase.from("applications").insert({
-    intent,
-    name,
-    email: email || null,
-    phone: phone || null,
-    address: address || null,
-    organisation: organisation || null,
-    interest: interest || null,
-    subject: subject || null,
-    declaration_accepted: needsDeclaration && declared,
-    status: "new",
-    locale: clean(formData.get("locale"), 5) || "en",
-  });
-
-  if (error) {
-    console.error("application insert failed", error.message);
-    return { status: "error", message: "generic", values };
-  }
-
+  // Email is the guaranteed delivery — independent of the database.
   after(async () => {
     try {
       await notifyApplication({
@@ -352,6 +334,27 @@ export async function submitApplication(
       console.error("application notify failed", err);
     }
   });
+
+  // Record it — best effort only.
+  const supabase = getSupabase();
+  if (supabase) {
+    const { error } = await supabase.from("applications").insert({
+      intent,
+      name,
+      email: email || null,
+      phone: phone || null,
+      address: address || null,
+      organisation: organisation || null,
+      interest: interest || null,
+      subject: subject || null,
+      declaration_accepted: needsDeclaration && declared,
+      status: "new",
+      locale: clean(formData.get("locale"), 5) || "en",
+    });
+    if (error) {
+      console.error("application insert failed (email still sent)", error.message);
+    }
+  }
 
   return { status: "done" };
 }
