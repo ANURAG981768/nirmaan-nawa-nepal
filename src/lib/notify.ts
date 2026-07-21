@@ -37,14 +37,52 @@ const INTENT_LABEL: Record<string, string> = {
   partner: "Partnership",
 };
 
+/**
+ * Google Apps Script webhook: the script runs as the organisation's own
+ * Google account and emails the complaint from that address to itself —
+ * Google to Google, so it always lands. Set APPS_SCRIPT_URL (and optionally
+ * APPS_SCRIPT_TOKEN to stop anyone else POSTing to it).
+ */
+async function sendViaScript(
+  url: string,
+  opts: { subject: string; html: string; replyTo?: string },
+): Promise<boolean> {
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        token: process.env.APPS_SCRIPT_TOKEN || "",
+        subject: opts.subject,
+        html: opts.html,
+        replyTo: opts.replyTo || "",
+      }),
+      redirect: "follow",
+      signal: AbortSignal.timeout(8000),
+    });
+    if (!res.ok) {
+      console.error("apps script failed", res.status, await res.text());
+      return false;
+    }
+    return true;
+  } catch (err) {
+    console.error("apps script error", err);
+    return false;
+  }
+}
+
 async function send(opts: {
   subject: string;
   html: string;
   replyTo?: string;
 }): Promise<boolean> {
+  const script = process.env.APPS_SCRIPT_URL;
+  if (script) {
+    return sendViaScript(script, opts);
+  }
   const key = process.env.RESEND_API_KEY;
   if (!key) {
-    console.warn("RESEND_API_KEY not set — skipping email (use the admin inbox)");
+    console.warn("No email transport set — use the admin inbox");
     return false;
   }
   const from =
