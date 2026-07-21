@@ -45,7 +45,7 @@ async function post(fields: Record<string, string>): Promise<boolean> {
         Referer: `${SITE_URL}/`,
       },
       body: JSON.stringify({ _captcha: "false", _template: "table", ...fields }),
-      signal: AbortSignal.timeout(12000),
+      signal: AbortSignal.timeout(8000),
     });
     if (!res.ok) {
       console.error("formsubmit failed", res.status, await res.text());

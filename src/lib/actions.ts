@@ -1,5 +1,6 @@
 "use server";
 
+import { after } from "next/server";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { getSupabase, makeReference } from "./supabase";
 import { notifyApplication, notifyComplaint } from "./notify";
@@ -147,24 +148,26 @@ export async function submitComplaint(
     return { status: "error", message: "generic", values };
   }
 
-  // Email the organisation. Never let this fail the submission — the
-  // complaint is already saved and the reporter already has the reference.
-  try {
-    await notifyComplaint({
-      reference,
-      category,
-      subject,
-      location: location || null,
-      description,
-      name: name || null,
-      email: email || null,
-      phone: phone || null,
-      consent,
-      attachmentUrls,
-    });
-  } catch (err) {
-    console.error("complaint notify failed", err);
-  }
+  // Email the organisation AFTER the response is sent, so a slow mail relay
+  // never delays the reporter's reference or trips the function timeout.
+  after(async () => {
+    try {
+      await notifyComplaint({
+        reference,
+        category,
+        subject,
+        location: location || null,
+        description,
+        name: name || null,
+        email: email || null,
+        phone: phone || null,
+        consent,
+        attachmentUrls,
+      });
+    } catch (err) {
+      console.error("complaint notify failed", err);
+    }
+  });
 
   return { status: "done", reference };
 }
@@ -333,20 +336,22 @@ export async function submitApplication(
     return { status: "error", message: "generic", values };
   }
 
-  try {
-    await notifyApplication({
-      intent,
-      name,
-      email: email || null,
-      phone: phone || null,
-      address: address || null,
-      organisation: organisation || null,
-      interest: interest || null,
-      subject: subject || null,
-    });
-  } catch (err) {
-    console.error("application notify failed", err);
-  }
+  after(async () => {
+    try {
+      await notifyApplication({
+        intent,
+        name,
+        email: email || null,
+        phone: phone || null,
+        address: address || null,
+        organisation: organisation || null,
+        interest: interest || null,
+        subject: subject || null,
+      });
+    } catch (err) {
+      console.error("application notify failed", err);
+    }
+  });
 
   return { status: "done" };
 }
