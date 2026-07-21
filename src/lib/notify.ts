@@ -1,5 +1,5 @@
 import "server-only";
-import { ORG } from "./org";
+import { ORG, SITE_URL } from "./org";
 
 /**
  * Email notifications to the organisation — no account, no API key, no app
@@ -39,6 +39,10 @@ async function post(fields: Record<string, string>): Promise<boolean> {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
+        // FormSubmit rejects requests without a browser-style origin; these
+        // headers identify the request as coming from our own site.
+        Origin: SITE_URL,
+        Referer: `${SITE_URL}/`,
       },
       body: JSON.stringify({ _captcha: "false", _template: "table", ...fields }),
       signal: AbortSignal.timeout(12000),
