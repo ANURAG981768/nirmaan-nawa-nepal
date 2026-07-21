@@ -166,6 +166,7 @@ export async function submitComplaint(
       phone: phone || null,
       consent_to_forward: consent,
       attachment_count: attachmentUrls.length,
+      attachment_urls: attachmentUrls,
       status: "received",
       locale: clean(formData.get("locale"), 5) || "en",
     });
