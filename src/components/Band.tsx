@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import ContourField from "./ContourField";
 
 /**
  * The शिरोरेखा system.
@@ -24,20 +25,28 @@ export function Band({
   ink = false,
   tight = false,
   ticks = true,
+  contour = false,
   id,
 }: {
   children: ReactNode;
   ink?: boolean;
   tight?: boolean;
   ticks?: boolean;
+  contour?: boolean;
   id?: string;
 }) {
-  const className = ["band", ink ? "band-ink" : "", tight ? "band-tight" : ""]
+  const className = [
+    "band",
+    ink ? "band-ink" : "",
+    tight ? "band-tight" : "",
+    contour ? "band-contour" : "",
+  ]
     .filter(Boolean)
     .join(" ");
 
   return (
     <section className={className} id={id}>
+      {contour ? <ContourField /> : null}
       {ticks ? <Ticks /> : null}
       <div className="shell">{children}</div>
     </section>

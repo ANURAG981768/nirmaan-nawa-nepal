@@ -34,7 +34,7 @@ export default async function PublicationsPage({
 
   return (
     <>
-      <Band tight ticks={false}>
+      <Band tight ticks={false} contour>
         <p className="tag">{t.publications.tag}</p>
         <h1 className="d-lg" style={{ marginTop: "0.75rem" }}>
           {t.publications.title}

@@ -597,6 +597,22 @@ summary:focus-visible {
   z-index: 1;
 }
 
+/* Any band can carry the same drifting backdrop as the hero. */
+.band-contour {
+  overflow: hidden;
+}
+
+.band-contour > .shell,
+.band-contour > .ticks {
+  position: relative;
+  z-index: 1;
+}
+
+.band-ink.band-contour .hero-bg {
+  color: rgba(216, 163, 53, 0.55);
+  opacity: 0.3;
+}
+
 /* Text and emblem sit as one centred pair — no dead space on either side,
    balanced whatever the screen width. Wraps to a stack on narrow screens. */
 .hero-grid {
