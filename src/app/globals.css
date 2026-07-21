@@ -272,6 +272,63 @@ body {
   background: rgba(216, 163, 53, 0.5);
 }
 
+/* ---------- top ribbon ---------- */
+
+.topbar {
+  background: var(--paper-warm);
+  border-bottom: var(--rule-w) solid var(--line);
+}
+
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 34px;
+}
+
+.topbar-social {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.topbar-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  transition: transform 0.16s ease, background 0.16s ease;
+}
+
+.topbar-social a:hover {
+  background: rgba(16, 31, 61, 0.06);
+  transform: translateY(-1px);
+}
+
+.topbar-mail {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  color: var(--slate);
+  text-decoration: none;
+}
+
+.topbar-mail:hover {
+  color: var(--clay);
+}
+
+@media (max-width: 560px) {
+  .topbar-mail {
+    display: none;
+  }
+}
+
 /* ---------- masthead ---------- */
 
 .masthead {

@@ -1,11 +1,37 @@
 "use server";
 
+import type { SupabaseClient } from "@supabase/supabase-js";
 import { getSupabase, makeReference } from "./supabase";
-import {
-  filesToAttachments,
-  notifyApplication,
-  notifyComplaint,
-} from "./notify";
+import { notifyApplication, notifyComplaint } from "./notify";
+
+/** Upload evidence files and return their public URLs (max 5). */
+async function uploadEvidence(
+  supabase: SupabaseClient,
+  reference: string,
+  files: File[],
+): Promise<string[]> {
+  const urls: string[] = [];
+  for (const file of files.slice(0, 5)) {
+    const ext = (file.name.split(".").pop() || "bin")
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, "")
+      .slice(0, 8);
+    const path = `${reference}/${crypto.randomUUID()}.${ext}`;
+    const { error } = await supabase.storage
+      .from("evidence")
+      .upload(path, file, {
+        contentType: file.type || "application/octet-stream",
+        upsert: false,
+      });
+    if (error) {
+      console.error("evidence upload failed", error.message);
+      continue;
+    }
+    const { data } = supabase.storage.from("evidence").getPublicUrl(path);
+    if (data?.publicUrl) urls.push(data.publicUrl);
+  }
+  return urls;
+}
 
 /* ------------------------------------------------------------------ *
  * Complaints
@@ -95,11 +121,11 @@ export async function submitComplaint(
 
   const reference = makeReference();
 
-  // Photo / video evidence, attached straight to the notification email.
+  // Photo / video evidence → storage → a link in the notification email.
   const files = formData
     .getAll("files")
     .filter((f): f is File => f instanceof File && f.size > 0);
-  const { attachments, skipped } = await filesToAttachments(files);
+  const attachmentUrls = await uploadEvidence(supabase, reference, files);
 
   const { error } = await supabase.from("complaints").insert({
     reference,
@@ -111,7 +137,7 @@ export async function submitComplaint(
     email: email || null,
     phone: phone || null,
     consent_to_forward: consent,
-    attachment_count: attachments.length,
+    attachment_count: attachmentUrls.length,
     status: "received",
     locale: clean(formData.get("locale"), 5) || "en",
   });
@@ -134,8 +160,7 @@ export async function submitComplaint(
       email: email || null,
       phone: phone || null,
       consent,
-      attachments,
-      skipped,
+      attachmentUrls,
     });
   } catch (err) {
     console.error("complaint notify failed", err);

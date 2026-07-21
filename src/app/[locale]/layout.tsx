@@ -4,6 +4,7 @@ import { Tiro_Devanagari_Hindi, Mukta, IBM_Plex_Mono } from "next/font/google";
 import { locales, isLocale, ORG, SITE_URL, type Locale } from "@/lib/org";
 import { getCopy } from "@/lib/content";
 import Masthead from "@/components/Masthead";
+import SocialRibbon from "@/components/SocialRibbon";
 import Footer from "@/components/Footer";
 import "../globals.css";
 
@@ -133,6 +134,7 @@ export default async function LocaleLayout({
         <a className="skip" href="#main">
           {t.common.skip}
         </a>
+        <SocialRibbon />
         <Masthead locale={locale as Locale} />
         <main id="main">{children}</main>
         <Footer locale={locale as Locale} />
