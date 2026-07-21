@@ -1,20 +1,25 @@
 import "server-only";
-import { ORG, SITE_URL } from "./org";
+import { ORG } from "./org";
 
 /**
- * Email notifications to the organisation — no account, no API key, no app
- * password. Uses FormSubmit (https://formsubmit.co), which relays form
- * submissions to an email address.
+ * Email notifications to the organisation via Resend (https://resend.com).
  *
- * The only one-time step: the very first submission triggers a "confirm
- * your email" message to the organisation's inbox; clicking it once
- * activates delivery forever. After that every form lands in the inbox.
+ * Reliable, direct-to-inbox delivery. Setup is one env var:
  *
- * Email never gates a form: if the relay is slow or down, the complaint is
- * already saved to the database and the reporter already has the reference.
+ *   RESEND_API_KEY  — from resend.com (sign up WITH the org's own Gmail so,
+ *                     with no custom domain, Resend still delivers to it)
+ *   NOTIFY_FROM     — optional; defaults to Resend's shared sender.
+ *
+ * If RESEND_API_KEY is not set, these do nothing and return false — the
+ * complaint is still saved and readable in the admin inbox. Email is a
+ * convenience on top, never the only path.
  */
 
-const ENDPOINT = `https://formsubmit.co/ajax/${encodeURIComponent(ORG.email)}`;
+const ENDPOINT = "https://api.resend.com/emails";
+
+function esc(v: string): string {
+  return v.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
 
 const CATEGORY_LABEL: Record<string, string> = {
   service: "Public service / local government",
@@ -32,30 +37,47 @@ const INTENT_LABEL: Record<string, string> = {
   partner: "Partnership",
 };
 
-async function post(fields: Record<string, string>): Promise<boolean> {
+async function send(opts: {
+  subject: string;
+  html: string;
+  replyTo?: string;
+}): Promise<boolean> {
+  const key = process.env.RESEND_API_KEY;
+  if (!key) {
+    console.warn("RESEND_API_KEY not set — skipping email (use the admin inbox)");
+    return false;
+  }
+  const from =
+    process.env.NOTIFY_FROM || "Nirman Nawa Nepal <onboarding@resend.dev>";
   try {
     const res = await fetch(ENDPOINT, {
       method: "POST",
       headers: {
+        Authorization: `Bearer ${key}`,
         "Content-Type": "application/json",
-        Accept: "application/json",
-        // FormSubmit rejects requests without a browser-style origin; these
-        // headers identify the request as coming from our own site.
-        Origin: SITE_URL,
-        Referer: `${SITE_URL}/`,
       },
-      body: JSON.stringify({ _captcha: "false", _template: "table", ...fields }),
+      body: JSON.stringify({
+        from,
+        to: [ORG.email],
+        subject: opts.subject,
+        html: opts.html,
+        ...(opts.replyTo ? { reply_to: opts.replyTo } : {}),
+      }),
       signal: AbortSignal.timeout(8000),
     });
     if (!res.ok) {
-      console.error("formsubmit failed", res.status, await res.text());
+      console.error("resend failed", res.status, await res.text());
       return false;
     }
     return true;
   } catch (err) {
-    console.error("formsubmit error", err);
+    console.error("resend error", err);
     return false;
   }
+}
+
+function row(label: string, value: string): string {
+  return `<tr><td style="padding:6px 14px 6px 0;color:#59617a;white-space:nowrap;vertical-align:top">${label}</td><td style="padding:6px 0;color:#101f3d">${value}</td></tr>`;
 }
 
 export async function notifyComplaint(input: {
@@ -71,23 +93,50 @@ export async function notifyComplaint(input: {
   attachmentUrls: string[];
 }): Promise<boolean> {
   const anonymous = !input.name && !input.email && !input.phone;
-  const fields: Record<string, string> = {
-    _subject: `New complaint: ${input.subject} [${input.reference}]`,
-    Reference: input.reference,
-    Category: CATEGORY_LABEL[input.category] || input.category,
-    Subject: input.subject,
-    Location: input.location || "—",
-    Description: input.description,
-    Reporter: anonymous ? "Filed anonymously" : input.name || "—",
-    Email: input.email || "—",
-    Phone: input.phone || "—",
-    "Consent to forward": input.consent ? "Yes" : "No",
-    "Photos / videos": input.attachmentUrls.length
-      ? input.attachmentUrls.join("\n")
-      : "None attached",
-  };
-  if (input.email) fields._replyto = input.email;
-  return post(fields);
+  const files = input.attachmentUrls
+    .map(
+      (u, i) =>
+        `<a href="${esc(u)}" style="color:#bd5334">📎 Photo/video ${i + 1}</a>`,
+    )
+    .join("&nbsp;&nbsp;");
+
+  const html = `
+  <div style="font-family:Arial,Helvetica,sans-serif;max-width:640px;margin:0 auto;color:#101f3d">
+    <div style="border-bottom:3px solid #bd5334;padding-bottom:10px;margin-bottom:18px">
+      <div style="font-size:12px;letter-spacing:2px;color:#bd5334;text-transform:uppercase">New public complaint</div>
+      <h2 style="margin:6px 0 0;font-size:20px">${esc(input.subject)}</h2>
+    </div>
+    <table style="border-collapse:collapse;font-size:14px;line-height:1.5;width:100%">
+      ${row("Reference", `<b>${esc(input.reference)}</b>`)}
+      ${row("Category", esc(CATEGORY_LABEL[input.category] || input.category))}
+      ${input.location ? row("Location", esc(input.location)) : ""}
+    </table>
+    <div style="margin:18px 0;padding:14px;background:#f4f1ea;border-radius:4px;white-space:pre-wrap;font-size:14px;line-height:1.6">${esc(
+      input.description,
+    )}</div>
+    ${files ? `<p style="font-size:14px">${files}</p>` : ""}
+    <table style="border-collapse:collapse;font-size:14px;line-height:1.5;width:100%">
+      ${
+        anonymous
+          ? row("Reporter", "<i>Filed anonymously</i>")
+          : (input.name ? row("Name", esc(input.name)) : "") +
+            (input.email
+              ? row("Email", `<a href="mailto:${esc(input.email)}" style="color:#bd5334">${esc(input.email)}</a>`)
+              : "") +
+            (input.phone ? row("Phone", esc(input.phone)) : "")
+      }
+      ${row("Consent to forward", input.consent ? "Yes" : "No")}
+    </table>
+    <p style="font-size:12px;color:#8a8f9c;margin-top:22px;border-top:1px solid #e3ded2;padding-top:12px">
+      Sent from the Nirman Nawa Nepal website. Full inbox: open the site's admin page.
+    </p>
+  </div>`;
+
+  return send({
+    subject: `New complaint: ${input.subject} [${input.reference}]`,
+    html,
+    replyTo: input.email || undefined,
+  });
 }
 
 export async function notifyApplication(input: {
@@ -100,17 +149,30 @@ export async function notifyApplication(input: {
   interest: string | null;
   subject: string | null;
 }): Promise<boolean> {
-  const fields: Record<string, string> = {
-    _subject: `New ${INTENT_LABEL[input.intent] || "message"}: ${input.name}`,
-    Type: INTENT_LABEL[input.intent] || input.intent,
-    Name: input.name,
-    Email: input.email || "—",
-    Phone: input.phone || "—",
-    "Lives in": input.address || "—",
-    Organisation: input.organisation || "—",
-    Question: input.subject || "—",
-    Message: input.interest || "—",
-  };
-  if (input.email) fields._replyto = input.email;
-  return post(fields);
+  const html = `
+  <div style="font-family:Arial,Helvetica,sans-serif;max-width:640px;margin:0 auto;color:#101f3d">
+    <div style="border-bottom:3px solid #bd5334;padding-bottom:10px;margin-bottom:18px">
+      <div style="font-size:12px;letter-spacing:2px;color:#bd5334;text-transform:uppercase">New message from the website</div>
+      <h2 style="margin:6px 0 0;font-size:20px">${esc(INTENT_LABEL[input.intent] || input.intent)}</h2>
+    </div>
+    <table style="border-collapse:collapse;font-size:14px;line-height:1.5;width:100%">
+      ${row("Name", esc(input.name))}
+      ${input.email ? row("Email", `<a href="mailto:${esc(input.email)}" style="color:#bd5334">${esc(input.email)}</a>`) : ""}
+      ${input.phone ? row("Phone", esc(input.phone)) : ""}
+      ${input.address ? row("Lives in", esc(input.address)) : ""}
+      ${input.organisation ? row("Organisation", esc(input.organisation)) : ""}
+      ${input.subject ? row("Question", esc(input.subject)) : ""}
+    </table>
+    ${
+      input.interest
+        ? `<div style="margin:18px 0;padding:14px;background:#f4f1ea;border-radius:4px;white-space:pre-wrap;font-size:14px;line-height:1.6">${esc(input.interest)}</div>`
+        : ""
+    }
+  </div>`;
+
+  return send({
+    subject: `New ${INTENT_LABEL[input.intent] || "message"}: ${input.name}`,
+    html,
+    replyTo: input.email || undefined,
+  });
 }
