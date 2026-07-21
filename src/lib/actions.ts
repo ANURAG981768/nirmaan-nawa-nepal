@@ -1,6 +1,11 @@
 "use server";
 
 import { getSupabase, makeReference } from "./supabase";
+import {
+  filesToAttachments,
+  notifyApplication,
+  notifyComplaint,
+} from "./notify";
 
 /* ------------------------------------------------------------------ *
  * Complaints
@@ -90,6 +95,12 @@ export async function submitComplaint(
 
   const reference = makeReference();
 
+  // Photo / video evidence, attached straight to the notification email.
+  const files = formData
+    .getAll("files")
+    .filter((f): f is File => f instanceof File && f.size > 0);
+  const { attachments, skipped } = await filesToAttachments(files);
+
   const { error } = await supabase.from("complaints").insert({
     reference,
     category,
@@ -100,6 +111,7 @@ export async function submitComplaint(
     email: email || null,
     phone: phone || null,
     consent_to_forward: consent,
+    attachment_count: attachments.length,
     status: "received",
     locale: clean(formData.get("locale"), 5) || "en",
   });
@@ -107,6 +119,26 @@ export async function submitComplaint(
   if (error) {
     console.error("complaint insert failed", error.message);
     return { status: "error", message: "generic", values };
+  }
+
+  // Email the organisation. Never let this fail the submission — the
+  // complaint is already saved and the reporter already has the reference.
+  try {
+    await notifyComplaint({
+      reference,
+      category,
+      subject,
+      location: location || null,
+      description,
+      name: name || null,
+      email: email || null,
+      phone: phone || null,
+      consent,
+      attachments,
+      skipped,
+    });
+  } catch (err) {
+    console.error("complaint notify failed", err);
   }
 
   return { status: "done", reference };
@@ -274,6 +306,21 @@ export async function submitApplication(
   if (error) {
     console.error("application insert failed", error.message);
     return { status: "error", message: "generic", values };
+  }
+
+  try {
+    await notifyApplication({
+      intent,
+      name,
+      email: email || null,
+      phone: phone || null,
+      address: address || null,
+      organisation: organisation || null,
+      interest: interest || null,
+      subject: subject || null,
+    });
+  } catch (err) {
+    console.error("application notify failed", err);
   }
 
   return { status: "done" };

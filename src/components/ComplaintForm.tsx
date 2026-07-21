@@ -157,6 +157,24 @@ export default function ComplaintForm({ locale }: { locale: Locale }) {
         </p>
       </div>
 
+      <div className="field">
+        <label htmlFor="files">
+          {f.filesLabel}{" "}
+          <span style={{ fontWeight: 400, color: "var(--slate)" }}>
+            ({t.common.optional})
+          </span>
+        </label>
+        <input
+          id="files"
+          name="files"
+          type="file"
+          multiple
+          accept="image/*,video/*"
+          className="file-input"
+        />
+        <p className="field-hint">{f.filesHint}</p>
+      </div>
+
       <hr className="divider" style={{ margin: "2rem 0 1.5rem" }} />
 
       <p

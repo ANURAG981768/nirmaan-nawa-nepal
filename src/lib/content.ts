@@ -311,6 +311,9 @@ const en = {
       descPlaceholder:
         "What happened, when, who is affected, and what you have already tried. The more specific you are, the more we can do.",
       descHint: "Please include dates and places if you know them.",
+      filesLabel: "Add a photo or video",
+      filesHint:
+        "Attach evidence — a photo or a short video. Sent straight to the organisation. Up to 18 MB in total.",
 
       identityLabel: "Your details",
       identityHint:
@@ -803,6 +806,9 @@ const ne: Copy = {
       descPlaceholder:
         "के भयो, कहिले भयो, कसलाई असर परेको छ, र तपाईंले पहिले के प्रयास गर्नुभयो। जति स्पष्ट लेख्नुहुन्छ, हामीले त्यति धेरै गर्न सक्छौं।",
       descHint: "थाहा भएसम्म मिति र स्थान उल्लेख गर्नुहोस्।",
+      filesLabel: "फोटो वा भिडियो थप्नुहोस्",
+      filesHint:
+        "प्रमाण संलग्न गर्नुहोस् — फोटो वा छोटो भिडियो। सिधै संस्थामा पठाइन्छ। कुल १८ MB सम्म।",
 
       identityLabel: "तपाईंको विवरण",
       identityHint:

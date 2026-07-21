@@ -1079,6 +1079,31 @@ a.card:hover {
   min-height: 9rem;
 }
 
+.file-input {
+  width: 100%;
+  font-family: var(--body);
+  font-size: 0.9375rem;
+  color: var(--ink);
+  border: 1px dashed var(--line-strong);
+  border-radius: 2px;
+  padding: 0.7rem 0.85rem;
+  background: #fff;
+  cursor: pointer;
+}
+
+.file-input::file-selector-button {
+  font-family: var(--body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--clay);
+  border: 0;
+  border-radius: 2px;
+  padding: 0.45rem 0.9rem;
+  margin-right: 0.85rem;
+  cursor: pointer;
+}
+
 .field input::placeholder,
 .field textarea::placeholder {
   color: #9aa0b0;
