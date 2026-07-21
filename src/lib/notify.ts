@@ -1,21 +1,21 @@
 import "server-only";
+import nodemailer from "nodemailer";
 import { ORG } from "./org";
 
 /**
- * Email notifications.
+ * Email notifications to the organisation.
  *
- * Uses Resend (https://resend.com) over its HTTP API — no SDK, no extra
- * dependency. Configure two env vars:
+ * Two transports, chosen by which env vars are set:
  *
- *   RESEND_API_KEY   — from the Resend dashboard
- *   NOTIFY_FROM      — optional; defaults to Resend's shared sender.
+ *   Gmail (preferred here):
+ *     GMAIL_USER          — the organisation's Gmail address
+ *     GMAIL_APP_PASSWORD  — a 16-character Google App Password
+ *   Resend (fallback):
+ *     RESEND_API_KEY, NOTIFY_FROM
  *
- * With a free Resend account signed up under the organisation's own Gmail,
- * mail to that same Gmail is delivered without needing a verified domain.
- *
- * If RESEND_API_KEY is not set, these functions do nothing and return
- * false — the complaint is still saved, the form still works. Email is a
- * notification on top, never a gate.
+ * If neither is set, these functions do nothing and return false — the
+ * complaint is still saved and the reporter still gets the reference. Email
+ * is a notification on top, never a gate.
  */
 
 const RESEND_ENDPOINT = "https://api.resend.com/emails";
@@ -30,17 +30,50 @@ function esc(value: string): string {
     .replace(/>/g, "&gt;");
 }
 
-async function send(opts: {
+async function sendViaGmail(opts: {
+  subject: string;
+  html: string;
+  replyTo?: string;
+  attachments?: Attachment[];
+}): Promise<boolean> {
+  const user = process.env.GMAIL_USER;
+  const pass = process.env.GMAIL_APP_PASSWORD?.replace(/\s+/g, "");
+  if (!user || !pass) return false;
+
+  const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: { user, pass },
+  });
+
+  try {
+    await transporter.sendMail({
+      from: `Nirman Nawa Nepal <${user}>`,
+      to: ORG.email,
+      subject: opts.subject,
+      html: opts.html,
+      replyTo: opts.replyTo,
+      attachments: opts.attachments?.map((a) => ({
+        filename: a.filename,
+        content: Buffer.from(a.content, "base64"),
+      })),
+    });
+    return true;
+  } catch (err) {
+    console.error("gmail send error", err);
+    return false;
+  }
+}
+
+async function sendViaResend(opts: {
   subject: string;
   html: string;
   replyTo?: string;
   attachments?: Attachment[];
 }): Promise<boolean> {
   const key = process.env.RESEND_API_KEY;
-  if (!key) {
-    console.warn("RESEND_API_KEY not set — skipping email notification");
-    return false;
-  }
+  if (!key) return false;
   const from =
     process.env.NOTIFY_FROM || "Nirman Nawa Nepal <onboarding@resend.dev>";
 
@@ -57,11 +90,8 @@ async function send(opts: {
         subject: opts.subject,
         html: opts.html,
         ...(opts.replyTo ? { reply_to: opts.replyTo } : {}),
-        ...(opts.attachments?.length
-          ? { attachments: opts.attachments }
-          : {}),
+        ...(opts.attachments?.length ? { attachments: opts.attachments } : {}),
       }),
-      // Never let a slow mail API hang the form submission.
       signal: AbortSignal.timeout(12000),
     });
     if (!res.ok) {
@@ -73,6 +103,22 @@ async function send(opts: {
     console.error("resend send error", err);
     return false;
   }
+}
+
+async function send(opts: {
+  subject: string;
+  html: string;
+  replyTo?: string;
+  attachments?: Attachment[];
+}): Promise<boolean> {
+  if (process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD) {
+    return sendViaGmail(opts);
+  }
+  if (process.env.RESEND_API_KEY) {
+    return sendViaResend(opts);
+  }
+  console.warn("No email transport configured — skipping notification");
+  return false;
 }
 
 /** Turn uploaded files into base64 attachments, within the size budget. */
